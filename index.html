@@ -551,32 +551,206 @@
       }
 
       /* =====================================================
-           RESPONSIVE
+           POWER BI — DISEÑO RESPONSIVE
+           El "Phone layout" se configura dentro de Power BI Service.
+           Este contenedor se adapta al viewport del dispositivo.
         ===================================================== */
 
-      @media (max-width: 850px) {
+      /* =====================================================
+           RESPONSIVE
+           Escritorio: sidebar + Power BI
+           Tablet/móvil: menú lateral convertido en drawer
+        ===================================================== */
+
+      .mobile-topbar {
+        display: none;
+      }
+
+      .menu-toggle-mobile {
+        border: 0;
+        background: transparent;
+        color: white;
+        width: 42px;
+        height: 42px;
+        border-radius: 11px;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      .sidebar-overlay {
+        display: none;
+      }
+
+      @media (max-width: 1100px) {
         .sidebar {
-          width: 280px;
+          width: 285px;
+        }
+
+        .brand-title {
+          font-size: 14px;
         }
       }
 
-      @media (max-width: 650px) {
-        .sidebar {
-          width: 245px;
+      @media (max-width: 768px) {
+        body {
+          display: block;
+          overflow: hidden;
+          height: 100dvh;
         }
 
-        .menu-description {
-          display: none;
+        .mobile-topbar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 58px;
+          z-index: 100;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 8px 10px;
+          background: linear-gradient(
+            145deg,
+            var(--sidebar),
+            var(--sidebar-light)
+          );
+          box-shadow: 0 5px 20px rgba(15, 23, 42, 0.2);
+        }
+
+        .mobile-title {
+          min-width: 0;
+          color: white;
+          font-size: 13px;
+          font-weight: 700;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .sidebar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: min(86vw, 320px);
+          height: 100dvh;
+          transform: translateX(-105%);
+          transition: transform 0.28s ease;
+          z-index: 200;
+          box-shadow: 12px 0 35px rgba(15, 23, 42, 0.3);
+        }
+
+        .sidebar.mobile-open {
+          transform: translateX(0);
+        }
+
+        .sidebar-overlay {
+          position: fixed;
+          inset: 0;
+          display: block;
+          background: rgba(7, 17, 31, 0.48);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.25s ease;
+          z-index: 150;
+        }
+
+        .sidebar-overlay.show {
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .content {
+          width: 100%;
+          height: 100dvh;
+          padding-top: 58px;
+        }
+
+        .powerbi-wrapper {
+          position: absolute;
+          top: 58px;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          padding: 0;
+        }
+
+        #powerbi {
+          width: 100%;
+          height: 100%;
+          border-radius: 0;
+          box-shadow: none;
+        }
+
+        .header {
+          padding-top: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .mobile-topbar {
+          height: 54px;
+        }
+
+        .content {
+          padding-top: 54px;
+        }
+
+        .powerbi-wrapper {
+          top: 54px;
+        }
+
+        .sidebar {
+          width: 88vw;
+        }
+
+        .menu-button {
+          min-height: 54px;
+        }
+
+        .menu-icon {
+          width: 38px;
+          height: 38px;
+          margin-right: 9px;
+        }
+
+        .menu-name {
+          font-size: 11px;
         }
 
         .submenu-inner {
-          padding-left: 50px;
+          padding-left: 48px;
         }
+      }
+
+      /* Evita que el navegador intente ampliar/reducir el layout
+         y permite que Power BI ocupe siempre todo el viewport. */
+      html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
       }
     </style>
   </head>
 
   <body>
+    <!-- BARRA SUPERIOR PARA CELULAR/TABLET -->
+    <div class="mobile-topbar">
+      <button
+        class="menu-toggle-mobile"
+        onclick="abrirMenuMobile()"
+        aria-label="Abrir menú"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="mobile-title">Ministerio de educación - DGFM</div>
+    </div>
+
+    <div
+      class="sidebar-overlay"
+      id="sidebarOverlay"
+      onclick="cerrarMenuMobile()"
+    ></div>
+
     <!-- =====================================================
          MENÚ IZQUIERDO
     ===================================================== -->
@@ -706,7 +880,8 @@
                   cargarPagina('pertinencia', this);
                   return false;
                 "
-               data-page="pertinencia">
+                data-page="pertinencia"
+              >
                 Evolución de la pertinencia
               </a>
 
@@ -716,7 +891,8 @@
                   cargarPagina('no_pertinencia', this);
                   return false;
                 "
-               data-page="no_pertinencia">
+                data-page="no_pertinencia"
+              >
                 No pertinencia departamental
               </a>
 
@@ -726,7 +902,8 @@
                   cargarPagina('estado_pertinencia', this);
                   return false;
                 "
-               data-page="estado_pertinencia">
+                data-page="estado_pertinencia"
+              >
                 Estado de pertinencia inicial actual
               </a>
 
@@ -736,7 +913,8 @@
                   cargarPagina('comparativa', this);
                   return false;
                 "
-               data-page="comparativa">
+                data-page="comparativa"
+              >
                 Comparativa de pertinencia
               </a>
             </div>
@@ -772,7 +950,8 @@
                   cargarPagina('migratorio_1', this);
                   return false;
                 "
-               data-page="migratorio_1">
+                data-page="migratorio_1"
+              >
                 Departamental origen → destino
               </a>
 
@@ -782,7 +961,8 @@
                   cargarPagina('migratorio_2', this);
                   return false;
                 "
-               data-page="migratorio_2">
+                data-page="migratorio_2"
+              >
                 Departamental origen
               </a>
 
@@ -792,7 +972,8 @@
                   cargarPagina('distrital', this);
                   return false;
                 "
-               data-page="distrital">
+                data-page="distrital"
+              >
                 Distrital
               </a>
             </div>
@@ -826,7 +1007,8 @@
                   cargarPagina('estudiantes', this);
                   return false;
                 "
-               data-page="estudiantes">
+                data-page="estudiantes"
+              >
                 Estudiantes general
               </a>
 
@@ -836,7 +1018,8 @@
                   cargarPagina('inicial', this);
                   return false;
                 "
-               data-page="inicial">
+                data-page="inicial"
+              >
                 Estudiantes inicial
               </a>
 
@@ -846,7 +1029,8 @@
                   cargarPagina('primaria', this);
                   return false;
                 "
-               data-page="primaria">
+                data-page="primaria"
+              >
                 Estudiantes primaria
               </a>
 
@@ -856,7 +1040,8 @@
                   cargarPagina('secundaria', this);
                   return false;
                 "
-               data-page="secundaria">
+                data-page="secundaria"
+              >
                 Estudiantes secundaria
               </a>
             </div>
@@ -890,7 +1075,8 @@
                   cargarPagina('cantidad', this);
                   return false;
                 "
-               data-page="cantidad">
+                data-page="cantidad"
+              >
                 Por cantidad
               </a>
 
@@ -900,7 +1086,8 @@
                   cargarPagina('carga_horaria', this);
                   return false;
                 "
-               data-page="carga_horaria">
+                data-page="carga_horaria"
+              >
                 Por carga horaria
               </a>
             </div>
@@ -931,21 +1118,11 @@
               <a
                 href="#"
                 onclick="
-                  cargarPagina('evolucion', this);
+                  cargarPagina('cupos', this);
                   return false;
                 "
               >
                 Cupos requeridos
-              </a>
-
-              <a
-                href="#"
-                onclick="
-                  cargarPagina('especialidad', this);
-                  return false;
-                "
-              >
-                Proyección de cupos
               </a>
             </div>
           </div>
@@ -1009,131 +1186,155 @@
           secundaria: "5e9d5d10c943fa97fdcd",
 
           cantidad: "77f4b8b22b8a0123a98a",
-          carga_horaria: "60ae5b6edd7a9f45e646"
+          carga_horaria: "60ae5b6edd7a9f45e646",
+
+          cupos: "73c4cbf03d2801fcc81d",
         },
-      }; 
- 
+      };
+
       /* ===================================================== 
            ABRIR UNA PÁGINA DE POWER BI 
-        ===================================================== */ 
- 
-      function cargarPagina(nombre, elemento) { 
-        const iframe = document.getElementById("powerbi"); 
- 
-        const loading = document.getElementById("loading"); 
- 
-        const pageName = POWERBI.paginas[nombre]; 
- 
+        ===================================================== */
+
+      function cargarPagina(nombre, elemento) {
+        const iframe = document.getElementById("powerbi");
+
+        const loading = document.getElementById("loading");
+
+        const pageName = POWERBI.paginas[nombre];
+
         /* 
                 Si todavía no existe la página, 
                 mostramos un aviso. 
-            */ 
- 
-        if (!pageName) { 
-          alert("Todavía no has configurado esta página de Power BI."); 
- 
-          return; 
-        } 
- 
+            */
+
+        if (!pageName) {
+          alert("Todavía no has configurado esta página de Power BI.");
+
+          return;
+        }
+
         /* 
                 Mostrar loading 
-            */ 
- 
-        loading.classList.add("show"); 
- 
+            */
+
+        loading.classList.add("show");
+
         /* 
                 Construir URL 
-            */ 
- 
-        const nuevaURL = 
-          POWERBI.base + "&pageName=" + encodeURIComponent(pageName); 
- 
+            */
+
+        const nuevaURL =
+          POWERBI.base + "&pageName=" + encodeURIComponent(pageName);
+
         /* 
                 Cambiar Power BI 
-            */ 
- 
-        iframe.src = nuevaURL; 
- 
+            */
+
+        iframe.src = nuevaURL;
+
         /* 
                 Quitar selección anterior 
-            */ 
- 
-        document.querySelectorAll(".submenu a").forEach((a) => { 
-          a.classList.remove("active"); 
-        }); 
- 
+            */
+
+        document.querySelectorAll(".submenu a").forEach((a) => {
+          a.classList.remove("active");
+        });
+
         /* 
                 Seleccionar actual 
-            */ 
- 
-        if (elemento) { 
-          elemento.classList.add("active"); 
-        } 
- 
+            */
+
+        if (elemento) {
+          elemento.classList.add("active");
+        }
+
         /* 
                 Cuando Power BI termina 
-            */ 
- 
-        iframe.onload = function () { 
-          setTimeout(() => { 
-            loading.classList.remove("show"); 
-          }, 700); 
-        }; 
-      } 
- 
+            */
+
+        iframe.onload = function () {
+          setTimeout(() => {
+            loading.classList.remove("show");
+          }, 700);
+        };
+      }
+
       /* ===================================================== 
            ABRIR / CERRAR SUBMENÚ 
-        ===================================================== */ 
- 
-      function toggleMenu(button) { 
-        const submenu = button.nextElementSibling; 
- 
-        const abierto = button.classList.contains("open"); 
- 
+        ===================================================== */
+
+      function toggleMenu(button) {
+        const submenu = button.nextElementSibling;
+
+        const abierto = button.classList.contains("open");
+
         /* 
                 Cerramos todos 
-            */ 
- 
-        document.querySelectorAll(".menu-button").forEach((btn) => { 
-          btn.classList.remove("open"); 
-        }); 
- 
-        document.querySelectorAll(".submenu").forEach((menu) => { 
-          menu.classList.remove("open"); 
-        }); 
- 
+            */
+
+        document.querySelectorAll(".menu-button").forEach((btn) => {
+          btn.classList.remove("open");
+        });
+
+        document.querySelectorAll(".submenu").forEach((menu) => {
+          menu.classList.remove("open");
+        });
+
         /* 
                 Si estaba cerrado, 
                 abrimos este. 
-            */ 
- 
-        if (!abierto) { 
-          button.classList.add("open"); 
- 
-          submenu.classList.add("open"); 
-        } 
-      } 
- 
+            */
+
+        if (!abierto) {
+          button.classList.add("open");
+
+          submenu.classList.add("open");
+        }
+      }
+
+      /* =====================================================
+           MENÚ RESPONSIVE PARA CELULAR
+        ===================================================== */
+
+      function abrirMenuMobile() {
+        document.querySelector(".sidebar").classList.add("mobile-open");
+        document.getElementById("sidebarOverlay").classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
+
+      function cerrarMenuMobile() {
+        document.querySelector(".sidebar").classList.remove("mobile-open");
+        document.getElementById("sidebarOverlay").classList.remove("show");
+        document.body.style.overflow = "";
+      }
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          cerrarMenuMobile();
+        }
+      });
+
       /* ===================================================== 
            BUSCADOR 
-        ===================================================== */ 
- 
-      function buscar() { 
-        const texto = document 
-          .getElementById("search") 
-          .value.toLowerCase() 
-          .trim(); 
- 
-        document.querySelectorAll(".menu-item").forEach((item) => { 
-          const contenido = item.textContent.toLowerCase(); 
- 
-          if (texto === "" || contenido.includes(texto)) { 
-            item.style.display = "block"; 
-          } else { 
-            item.style.display = "none"; 
-          } 
-        }); 
-      } 
-    </script> 
-  </body> 
-</html> 
+        ===================================================== */
+
+      function buscar() {
+        const texto = document
+          .getElementById("search")
+          .value.toLowerCase()
+          .trim();
+
+        document.querySelectorAll(".menu-item").forEach((item) => {
+          const contenido = item.textContent.toLowerCase();
+
+          if (texto === "" || contenido.includes(texto)) {
+            item.style.display = "block";
+          } else {
+            item.style.display = "none";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
