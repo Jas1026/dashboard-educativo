@@ -1,13 +1,14 @@
 <!doctype html>
+
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Ministerio de educación - DGFM</title>
+    <title>Ministerio de Educación - DGFM</title>
 
     <!-- ICONOS -->
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -15,8 +16,8 @@
 
     <style>
       /* =====================================================
-           CONFIGURACIÓN GENERAL
-        ===================================================== */
+       CONFIGURACIÓN GENERAL
+    ===================================================== */
 
       * {
         margin: 0;
@@ -39,10 +40,15 @@
         --background: #eef2f7;
       }
 
+      html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
       body {
         width: 100%;
         height: 100vh;
-
         overflow: hidden;
 
         font-family: "Segoe UI", Inter, Arial, sans-serif;
@@ -53,12 +59,11 @@
       }
 
       /* =====================================================
-           SIDEBAR
-        ===================================================== */
+       SIDEBAR
+    ===================================================== */
 
       .sidebar {
         width: 325px;
-
         height: 100vh;
 
         flex-shrink: 0;
@@ -66,7 +71,6 @@
         position: relative;
 
         display: flex;
-
         flex-direction: column;
 
         background: linear-gradient(
@@ -81,8 +85,6 @@
 
         z-index: 20;
       }
-
-      /* brillo decorativo */
 
       .sidebar::before {
         content: "";
@@ -107,8 +109,8 @@
       }
 
       /* =====================================================
-           ENCABEZADO
-        ===================================================== */
+       ENCABEZADO
+    ===================================================== */
 
       .header {
         padding: 27px 22px 15px;
@@ -120,9 +122,7 @@
 
       .brand {
         display: flex;
-
         align-items: center;
-
         gap: 13px;
       }
 
@@ -133,19 +133,18 @@
         border-radius: 16px;
 
         display: flex;
-
         align-items: center;
-
         justify-content: center;
 
         background: linear-gradient(135deg, #6366f1, #7c3aed);
 
         box-shadow: 0 10px 25px rgba(99, 102, 241, 0.32);
+
+        flex-shrink: 0;
       }
 
       .brand-icon i {
         color: white;
-
         font-size: 20px;
       }
 
@@ -153,7 +152,6 @@
         color: white;
 
         font-size: 16px;
-
         font-weight: 750;
 
         letter-spacing: -0.2px;
@@ -168,8 +166,8 @@
       }
 
       /* =====================================================
-           BUSCADOR
-        ===================================================== */
+       BUSCADOR
+    ===================================================== */
 
       .search {
         height: 43px;
@@ -179,7 +177,6 @@
         padding: 0 13px;
 
         display: flex;
-
         align-items: center;
 
         gap: 9px;
@@ -193,7 +190,6 @@
 
       .search i {
         color: #61748b;
-
         font-size: 12px;
       }
 
@@ -201,7 +197,6 @@
         width: 100%;
 
         border: none;
-
         outline: none;
 
         background: transparent;
@@ -216,8 +211,8 @@
       }
 
       /* =====================================================
-           MENU
-        ===================================================== */
+       MENU
+    ===================================================== */
 
       .menu {
         flex: 1;
@@ -237,7 +232,6 @@
 
       .menu::-webkit-scrollbar-thumb {
         background: #26374d;
-
         border-radius: 20px;
       }
 
@@ -256,8 +250,8 @@
       }
 
       /* =====================================================
-           CATEGORÍA
-        ===================================================== */
+       CATEGORÍA
+    ===================================================== */
 
       .menu-item {
         margin-bottom: 5px;
@@ -312,7 +306,6 @@
         display: flex;
 
         align-items: center;
-
         justify-content: center;
 
         border-radius: 12px;
@@ -375,8 +368,8 @@
       }
 
       /* =====================================================
-           SUBMENÚ
-        ===================================================== */
+       SUBMENÚ
+    ===================================================== */
 
       .submenu {
         max-height: 0;
@@ -391,7 +384,7 @@
       }
 
       .submenu.open {
-        max-height: 500px;
+        max-height: 900px;
 
         opacity: 1;
       }
@@ -460,8 +453,8 @@
       }
 
       /* =====================================================
-           ÁREA POWER BI
-        ===================================================== */
+       CONTENIDO POWER BI
+    ===================================================== */
 
       .content {
         flex: 1;
@@ -500,8 +493,8 @@
       }
 
       /* =====================================================
-           LOADING
-        ===================================================== */
+       LOADING
+    ===================================================== */
 
       .loading {
         position: absolute;
@@ -551,16 +544,8 @@
       }
 
       /* =====================================================
-           POWER BI — DISEÑO RESPONSIVE
-           El "Phone layout" se configura dentro de Power BI Service.
-           Este contenedor se adapta al viewport del dispositivo.
-        ===================================================== */
-
-      /* =====================================================
-           RESPONSIVE
-           Escritorio: sidebar + Power BI
-           Tablet/móvil: menú lateral convertido en drawer
-        ===================================================== */
+       RESPONSIVE
+    ===================================================== */
 
       .mobile-topbar {
         display: none;
@@ -568,12 +553,18 @@
 
       .menu-toggle-mobile {
         border: 0;
+
         background: transparent;
+
         color: white;
+
         width: 42px;
         height: 42px;
+
         border-radius: 11px;
+
         cursor: pointer;
+
         font-size: 18px;
       }
 
@@ -594,48 +585,72 @@
       @media (max-width: 768px) {
         body {
           display: block;
+
           overflow: hidden;
+
           height: 100dvh;
         }
 
         .mobile-topbar {
           position: fixed;
+
           top: 0;
           left: 0;
           right: 0;
+
           height: 58px;
+
           z-index: 100;
+
           display: flex;
+
           align-items: center;
+
           gap: 10px;
+
           padding: 8px 10px;
+
           background: linear-gradient(
             145deg,
             var(--sidebar),
             var(--sidebar-light)
           );
+
           box-shadow: 0 5px 20px rgba(15, 23, 42, 0.2);
         }
 
         .mobile-title {
           min-width: 0;
+
           color: white;
+
           font-size: 13px;
+
           font-weight: 700;
+
           white-space: nowrap;
+
           overflow: hidden;
+
           text-overflow: ellipsis;
         }
 
         .sidebar {
           position: fixed;
+
           top: 0;
           left: 0;
+
           width: min(86vw, 320px);
+
           height: 100dvh;
+
           transform: translateX(-105%);
+
           transition: transform 0.28s ease;
+
           z-index: 200;
+
           box-shadow: 12px 0 35px rgba(15, 23, 42, 0.3);
         }
 
@@ -645,39 +660,54 @@
 
         .sidebar-overlay {
           position: fixed;
+
           inset: 0;
+
           display: block;
+
           background: rgba(7, 17, 31, 0.48);
+
           opacity: 0;
+
           pointer-events: none;
+
           transition: opacity 0.25s ease;
+
           z-index: 150;
         }
 
         .sidebar-overlay.show {
           opacity: 1;
+
           pointer-events: auto;
         }
 
         .content {
           width: 100%;
+
           height: 100dvh;
+
           padding-top: 58px;
         }
 
         .powerbi-wrapper {
           position: absolute;
+
           top: 58px;
           right: 0;
           bottom: 0;
           left: 0;
+
           padding: 0;
         }
 
         #powerbi {
           width: 100%;
+
           height: 100%;
+
           border-radius: 0;
+
           box-shadow: none;
         }
 
@@ -710,6 +740,7 @@
         .menu-icon {
           width: 38px;
           height: 38px;
+
           margin-right: 9px;
         }
 
@@ -721,20 +752,16 @@
           padding-left: 48px;
         }
       }
-
-      /* Evita que el navegador intente ampliar/reducir el layout
-         y permite que Power BI ocupe siempre todo el viewport. */
-      html {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-      }
     </style>
   </head>
 
   <body>
-    <!-- BARRA SUPERIOR PARA CELULAR/TABLET -->
+    <!-- =====================================================
+       BARRA SUPERIOR PARA CELULAR / TABLET
+  ===================================================== -->
+
     <div class="mobile-topbar">
+      ```
       <button
         class="menu-toggle-mobile"
         onclick="abrirMenuMobile()"
@@ -742,8 +769,12 @@
       >
         <i class="fa-solid fa-bars"></i>
       </button>
-      <div class="mobile-title">Ministerio de educación - DGFM</div>
+
+      <div class="mobile-title">Ministerio de Educación - DGFM</div>
+      ```
     </div>
+
+    <!-- OVERLAY MOBILE -->
 
     <div
       class="sidebar-overlay"
@@ -752,10 +783,15 @@
     ></div>
 
     <!-- =====================================================
-         MENÚ IZQUIERDO
-    ===================================================== -->
+       MENÚ IZQUIERDO
+  ===================================================== -->
 
     <aside class="sidebar">
+      ```
+      <!-- =================================================
+     ENCABEZADO
+================================================= -->
+
       <div class="header">
         <div class="brand">
           <div class="brand-icon">
@@ -763,11 +799,13 @@
           </div>
 
           <div>
-            <div class="brand-title">Ministerio de educación - DGFM</div>
+            <div class="brand-title">Ministerio de Educación - DGFM</div>
 
             <div class="brand-subtitle">Centro de análisis e información</div>
           </div>
         </div>
+
+        <!-- BUSCADOR -->
 
         <div class="search">
           <i class="fa-solid fa-magnifying-glass"></i>
@@ -781,12 +819,16 @@
         </div>
       </div>
 
+      <!-- =================================================
+     MENÚ
+================================================= -->
+
       <div class="menu">
         <div class="section-label">Módulos de información</div>
 
         <!-- =================================================
-                 1. POBLACIÓN DE MAESTROS
-            ================================================= -->
+       1. POBLACIÓN DE MAESTROS
+  ================================================= -->
 
         <div class="menu-item">
           <button class="menu-button open" onclick="toggleMenu(this)">
@@ -800,11 +842,13 @@
               <span class="menu-description"> Personal docente </span>
             </span>
 
-            <i class="fa-solid fa-chevron-down menu-arrow"> </i>
+            <i class="fa-solid fa-chevron-down menu-arrow"></i>
           </button>
 
           <div class="submenu open">
             <div class="submenu-inner">
+              <!-- EVOLUCIÓN -->
+
               <a
                 href="#"
                 class="active"
@@ -817,45 +861,90 @@
                 Evolución
               </a>
 
-              <a
-                href="#"
-                data-page="especialidad"
-                onclick="
-                  cargarPagina('especialidad', this);
-                  return false;
-                "
-              >
-                Maestros por especialidad
-              </a>
+              <!-- ESPECIALIDAD 35.474 -->
 
               <a
                 href="#"
-                data-page="total_trabajando"
+                data-page="especialidad_35474"
                 onclick="
-                  cargarPagina('total_trabajando', this);
+                  cargarPagina('especialidad_35474', this);
                   return false;
                 "
               >
-                Total de maestros trabajando
+                Maestros por especialidad - 35.474
               </a>
+
+              <!-- ESPECIALIDAD 164.448 -->
 
               <a
                 href="#"
-                data-page="esfm"
+                data-page="especialidad_164448"
                 onclick="
-                  cargarPagina('esfm', this);
+                  cargarPagina('especialidad_164448', this);
                   return false;
                 "
               >
-                Maestros por ESFM
+                Maestros por especialidad - 164.448
+              </a>
+
+              <!-- TOTAL VS TRABAJANDO 35.474 -->
+
+              <a
+                href="#"
+                data-page="total_trabajando_35474"
+                onclick="
+                  cargarPagina('total_trabajando_35474', this);
+                  return false;
+                "
+              >
+                Total vs trabajando - 35.474
+              </a>
+
+              <!-- TOTAL VS TRABAJANDO 164.448 -->
+
+              <a
+                href="#"
+                data-page="total_trabajando_164448"
+                onclick="
+                  cargarPagina('total_trabajando_164448', this);
+                  return false;
+                "
+              >
+                Total vs trabajando - 164.448
+              </a>
+
+              <!-- ESFM 35.474 -->
+
+              <a
+                href="#"
+                data-page="esfm_35474"
+                onclick="
+                  cargarPagina('esfm_35474', this);
+                  return false;
+                "
+              >
+                Maestros por ESFM - 35.474
+              </a>
+
+              <!-- UE 164.448 -->
+
+              <a
+                href="#"
+                data-page="ue_164448"
+                onclick="
+                  cargarPagina('ue_164448', this);
+                  return false;
+                "
+              >
+                Maestros por UE - 164.448
               </a>
             </div>
           </div>
         </div>
 
         <!-- =================================================
-                 2. ANÁLISIS DE PERTINENCIA
-            ================================================= -->
+       2. ANÁLISIS DE PERTINENCIA
+  ================================================= -->
 
         <div class="menu-item">
           <button class="menu-button" onclick="toggleMenu(this)">
@@ -876,54 +965,54 @@
             <div class="submenu-inner">
               <a
                 href="#"
+                data-page="pertinencia"
                 onclick="
                   cargarPagina('pertinencia', this);
                   return false;
                 "
-                data-page="pertinencia"
               >
                 Evolución de la pertinencia
               </a>
 
               <a
                 href="#"
+                data-page="no_pertinencia"
                 onclick="
                   cargarPagina('no_pertinencia', this);
                   return false;
                 "
-                data-page="no_pertinencia"
               >
-                No pertinencia departamental
+                No pertinencia departamental - 35.474
               </a>
 
               <a
                 href="#"
+                data-page="estado_pertinencia"
                 onclick="
                   cargarPagina('estado_pertinencia', this);
                   return false;
                 "
-                data-page="estado_pertinencia"
               >
-                Estado de pertinencia inicial actual
+                Estado de pertinencia inicial / actual
               </a>
 
               <a
                 href="#"
+                data-page="comparativa"
                 onclick="
                   cargarPagina('comparativa', this);
                   return false;
                 "
-                data-page="comparativa"
               >
-                Comparativa de pertinencia
+                Comparativa de pertinencia general - 164.448
               </a>
             </div>
           </div>
         </div>
 
         <!-- =================================================
-                 3. ANÁLISIS MIGRATORIO
-            ================================================= -->
+       3. ANÁLISIS MIGRATORIO
+  ================================================= -->
 
         <div class="menu-item">
           <button class="menu-button" onclick="toggleMenu(this)">
@@ -944,45 +1033,64 @@
 
           <div class="submenu">
             <div class="submenu-inner">
+              <!-- MIGRATORIO 1 -->
+
               <a
                 href="#"
+                data-page="migratorio_1"
                 onclick="
                   cargarPagina('migratorio_1', this);
                   return false;
                 "
-                data-page="migratorio_1"
               >
-                Departamental origen → destino
+                Departamental origen → destino - 35.474
               </a>
+
+              <!-- MIGRATORIO 2 BD -->
 
               <a
                 href="#"
+                data-page="migratorio_2_bd"
                 onclick="
-                  cargarPagina('migratorio_2', this);
+                  cargarPagina('migratorio_2_bd', this);
                   return false;
                 "
-                data-page="migratorio_2"
               >
-                Departamental origen
+                Departamental origen - BD
               </a>
+
+              <!-- MIGRATORIO 3 -->
 
               <a
                 href="#"
+                data-page="migratorio_3"
+                onclick="
+                  cargarPagina('migratorio_3', this);
+                  return false;
+                "
+              >
+                Departamental 3 - 35.474
+              </a>
+
+              <!-- DISTRITAL -->
+
+              <a
+                href="#"
+                data-page="distrital"
                 onclick="
                   cargarPagina('distrital', this);
                   return false;
                 "
-                data-page="distrital"
               >
-                Distrital
+                Movimiento distrital
               </a>
             </div>
           </div>
         </div>
 
         <!-- =================================================
-                 4. ESTUDIANTES
-            ================================================= -->
+       4. ESTUDIANTES
+  ================================================= -->
 
         <div class="menu-item">
           <button class="menu-button" onclick="toggleMenu(this)">
@@ -1001,56 +1109,90 @@
 
           <div class="submenu">
             <div class="submenu-inner">
+              <!-- GENERAL -->
+
               <a
                 href="#"
+                data-page="estudiantes"
                 onclick="
                   cargarPagina('estudiantes', this);
                   return false;
                 "
-                data-page="estudiantes"
               >
                 Estudiantes general
               </a>
 
+              <!-- INICIAL -->
+
               <a
                 href="#"
+                data-page="inicial"
                 onclick="
                   cargarPagina('inicial', this);
                   return false;
                 "
-                data-page="inicial"
               >
                 Estudiantes inicial
               </a>
 
+              <!-- PRIMARIA -->
+
               <a
                 href="#"
+                data-page="primaria"
                 onclick="
                   cargarPagina('primaria', this);
                   return false;
                 "
-                data-page="primaria"
               >
                 Estudiantes primaria
               </a>
 
+              <!-- SECUNDARIA -->
+
               <a
                 href="#"
+                data-page="secundaria"
                 onclick="
                   cargarPagina('secundaria', this);
                   return false;
                 "
-                data-page="secundaria"
               >
                 Estudiantes secundaria
+              </a>
+
+              <!-- ALTERNATIVA -->
+
+              <a
+                href="#"
+                data-page="alternativa"
+                onclick="
+                  cargarPagina('alternativa', this);
+                  return false;
+                "
+              >
+                Estudiantes alternativa
+              </a>
+
+              <!-- ESPECIAL -->
+
+              <a
+                href="#"
+                data-page="especial"
+                onclick="
+                  cargarPagina('especial', this);
+                  return false;
+                "
+              >
+                Estudiantes especial
               </a>
             </div>
           </div>
         </div>
 
         <!-- =================================================
-                 5. ANÁLISIS DE DEMANDA
-            ================================================= -->
+       5. ANÁLISIS DE DEMANDA
+  ================================================= -->
 
         <div class="menu-item">
           <button class="menu-button" onclick="toggleMenu(this)">
@@ -1069,34 +1211,38 @@
 
           <div class="submenu">
             <div class="submenu-inner">
+              <!-- CANTIDAD -->
+
               <a
                 href="#"
+                data-page="cantidad"
                 onclick="
                   cargarPagina('cantidad', this);
                   return false;
                 "
-                data-page="cantidad"
               >
-                Por cantidad
+                Maestros necesarios por cantidad
               </a>
+
+              <!-- CARGA HORARIA -->
 
               <a
                 href="#"
+                data-page="carga_horaria"
                 onclick="
                   cargarPagina('carga_horaria', this);
                   return false;
                 "
-                data-page="carga_horaria"
               >
-                Por carga horaria
+                Maestros necesarios por carga horaria
               </a>
             </div>
           </div>
         </div>
 
         <!-- =================================================
-                 6. CUPOS REQUERIDOS
-            ================================================= -->
+       6. CUPOS REQUERIDOS
+  ================================================= -->
 
         <div class="menu-item">
           <button class="menu-button" onclick="toggleMenu(this)">
@@ -1117,6 +1263,7 @@
             <div class="submenu-inner">
               <a
                 href="#"
+                data-page="cupos"
                 onclick="
                   cargarPagina('cupos', this);
                   return false;
@@ -1128,73 +1275,127 @@
           </div>
         </div>
       </div>
+      ```
     </aside>
 
     <!-- =====================================================
-         CONTENIDO POWER BI
-    ===================================================== -->
+       CONTENIDO POWER BI
+  ===================================================== -->
 
     <main class="content">
+      ```
       <div class="powerbi-wrapper">
         <iframe
           id="powerbi"
           title="Gráficos educativos"
-          src="https://app.powerbi.com/reportEmbed?reportId=605e718e-1305-4b4c-9364-9df2f9baee51&autoAuth=true&ctid=77cab36c-76b2-48c3-9c54-cb9e4ee09b72&pageName=4ff34d3c7d51ed284a12&navContentPaneEnabled=false"
+          src="https://app.powerbi.com/reportEmbed?reportId=605e718e-1305-4b4c-9364-9df2f9baee51&autoAuth=true&ctid=77cab36c-76b2-48c3-9c54-cb9e4ee09b72&navContentPaneEnabled=false&pageName=4ff34d3c7d51ed284a12"
           frameborder="0"
           allowfullscreen="true"
         >
         </iframe>
       </div>
 
+      <!-- LOADING -->
+
       <div class="loading" id="loading">
         <div class="spinner"></div>
       </div>
+      ```
     </main>
 
     <!-- =====================================================
-         JAVASCRIPT
-    ===================================================== -->
+       JAVASCRIPT
+  ===================================================== -->
 
     <script>
       /* =====================================================
-           DATOS DE POWER BI
-           
-           AQUÍ ES DONDE DESPUÉS CAMBIAS LAS PÁGINAS
-        ===================================================== */
+       CONFIGURACIÓN POWER BI
+
+       Todos los IDs de página que me proporcionaste
+       están centralizados aquí.
+    ===================================================== */
 
       const POWERBI = {
         base: "https://app.powerbi.com/reportEmbed?reportId=605e718e-1305-4b4c-9364-9df2f9baee51&autoAuth=true&ctid=77cab36c-76b2-48c3-9c54-cb9e4ee09b72&navContentPaneEnabled=false",
 
         paginas: {
+          /* ================================================
+           POBLACIÓN DE MAESTROS
+        ================================================ */
+
           evolucion: "4ff34d3c7d51ed284a12",
-          especialidad: "21ecdd744ad1b36c6ba0",
-          total_trabajando: "5e0bcd085c6b30e75829",
-          esfm: "ac9f8db73d13a7d2df84",
+
+          especialidad_35474: "21ecdd744ad1b36c6ba0",
+
+          especialidad_164448: "6aa7f3b15867cd2d4732",
+
+          total_trabajando_35474: "5e0bcd085c6b30e75829",
+
+          total_trabajando_164448: "bf1791e85aa669eb6d7e",
+
+          esfm_35474: "ac9f8db73d13a7d2df84",
+
+          ue_164448: "40e0f186a72ef53575c4",
+
+          /* ================================================
+           ANÁLISIS DE PERTINENCIA
+        ================================================ */
 
           pertinencia: "e9ae7d786b4061c177d8",
+
           no_pertinencia: "167a76f5be017daa2044",
+
           estado_pertinencia: "8470e7f015690d8ae29a",
+
           comparativa: "800ba3216d0ff9b64783",
 
+          /* ================================================
+           ANÁLISIS MIGRATORIO
+        ================================================ */
+
           migratorio_1: "17fe7843c75c313d9bd6",
-          migratorio_2: "add53478c4d0b61cb8ea",
+
+          migratorio_2_bd: "e561112d1b15684ea6f7",
+
+          migratorio_3: "add53478c4d0b61cb8ea",
+
           distrital: "48f0afd9ac2dda07a387",
 
+          /* ================================================
+           ESTUDIANTES
+        ================================================ */
+
           estudiantes: "2bf6085ce047bc10e20d",
+
           inicial: "d75b21ca4b5b4b41d83c",
+
           primaria: "dd3554d86e1e7d8d265b",
+
           secundaria: "5e9d5d10c943fa97fdcd",
 
+          alternativa: "90f81322ad6931c9caff",
+
+          especial: "33984c76a1329bf865be",
+
+          /* ================================================
+           ANÁLISIS DE DEMANDA
+        ================================================ */
+
           cantidad: "77f4b8b22b8a0123a98a",
+
           carga_horaria: "60ae5b6edd7a9f45e646",
+
+          /* ================================================
+           CUPOS
+        ================================================ */
 
           cupos: "73c4cbf03d2801fcc81d",
         },
       };
 
-      /* ===================================================== 
-           ABRIR UNA PÁGINA DE POWER BI 
-        ===================================================== */
+      /* =====================================================
+       CARGAR PÁGINA DE POWER BI
+    ===================================================== */
 
       function cargarPagina(nombre, elemento) {
         const iframe = document.getElementById("powerbi");
@@ -1203,55 +1404,62 @@
 
         const pageName = POWERBI.paginas[nombre];
 
-        /* 
-                Si todavía no existe la página, 
-                mostramos un aviso. 
-            */
+        /* -----------------------------------------------
+         COMPROBAR QUE EXISTE EL PAGE NAME
+      ----------------------------------------------- */
 
         if (!pageName) {
-          alert("Todavía no has configurado esta página de Power BI.");
+          alert("No se encontró la página de Power BI: " + nombre);
 
           return;
         }
 
-        /* 
-                Mostrar loading 
-            */
+        /* -----------------------------------------------
+         MOSTRAR LOADING
+      ----------------------------------------------- */
 
         loading.classList.add("show");
 
-        /* 
-                Construir URL 
-            */
+        /* -----------------------------------------------
+         CONSTRUIR URL
+      ----------------------------------------------- */
 
         const nuevaURL =
           POWERBI.base + "&pageName=" + encodeURIComponent(pageName);
 
-        /* 
-                Cambiar Power BI 
-            */
+        /* -----------------------------------------------
+         CAMBIAR POWER BI
+      ----------------------------------------------- */
 
         iframe.src = nuevaURL;
 
-        /* 
-                Quitar selección anterior 
-            */
+        /* -----------------------------------------------
+         QUITAR SELECCIÓN ANTERIOR
+      ----------------------------------------------- */
 
         document.querySelectorAll(".submenu a").forEach((a) => {
           a.classList.remove("active");
         });
 
-        /* 
-                Seleccionar actual 
-            */
+        /* -----------------------------------------------
+         SELECCIONAR ELEMENTO ACTUAL
+      ----------------------------------------------- */
 
         if (elemento) {
           elemento.classList.add("active");
         }
 
-        /* 
-                Cuando Power BI termina 
-            */
+        /* -----------------------------------------------
+         CERRAR MENÚ MOBILE
+      ----------------------------------------------- */
+
+        if (window.innerWidth <= 768) {
+          cerrarMenuMobile();
+        }
+
+        /* -----------------------------------------------
+         LOADING
+      ----------------------------------------------- */
 
         iframe.onload = function () {
           setTimeout(() => {
@@ -1260,18 +1468,18 @@
         };
       }
 
-      /* ===================================================== 
-           ABRIR / CERRAR SUBMENÚ 
-        ===================================================== */
+      /* =====================================================
+       ABRIR / CERRAR SUBMENÚ
+    ===================================================== */
 
       function toggleMenu(button) {
         const submenu = button.nextElementSibling;
 
         const abierto = button.classList.contains("open");
 
-        /* 
-                Cerramos todos 
-            */
+        /* -----------------------------------------------
+         CERRAR TODOS LOS MENÚS
+      ----------------------------------------------- */
 
         document.querySelectorAll(".menu-button").forEach((btn) => {
           btn.classList.remove("open");
@@ -1281,10 +1489,9 @@
           menu.classList.remove("open");
         });
 
-        /* 
-                Si estaba cerrado, 
-                abrimos este. 
-            */
+        /* -----------------------------------------------
+         ABRIR EL SELECCIONADO
+      ----------------------------------------------- */
 
         if (!abierto) {
           button.classList.add("open");
@@ -1294,20 +1501,28 @@
       }
 
       /* =====================================================
-           MENÚ RESPONSIVE PARA CELULAR
-        ===================================================== */
+       MENÚ MOBILE
+    ===================================================== */
 
       function abrirMenuMobile() {
         document.querySelector(".sidebar").classList.add("mobile-open");
+
         document.getElementById("sidebarOverlay").classList.add("show");
+
         document.body.style.overflow = "hidden";
       }
 
       function cerrarMenuMobile() {
         document.querySelector(".sidebar").classList.remove("mobile-open");
+
         document.getElementById("sidebarOverlay").classList.remove("show");
+
         document.body.style.overflow = "";
       }
+
+      /* =====================================================
+       RESPONSIVE
+    ===================================================== */
 
       window.addEventListener("resize", () => {
         if (window.innerWidth > 768) {
@@ -1315,9 +1530,9 @@
         }
       });
 
-      /* ===================================================== 
-           BUSCADOR 
-        ===================================================== */
+      /* =====================================================
+       BUSCADOR
+    ===================================================== */
 
       function buscar() {
         const texto = document
@@ -1335,6 +1550,22 @@
           }
         });
       }
+
+      /* =====================================================
+       LOADING INICIAL
+    ===================================================== */
+
+      window.addEventListener("load", () => {
+        const iframe = document.getElementById("powerbi");
+
+        const loading = document.getElementById("loading");
+
+        iframe.onload = function () {
+          setTimeout(() => {
+            loading.classList.remove("show");
+          }, 700);
+        };
+      });
     </script>
   </body>
 </html>
