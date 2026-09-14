@@ -1,780 +1,1136 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
 
-    <title>Ministerio de Educación - DGFM</title>
+  <title>Ministerio de Educación - DGFM</title>
 
-    <!-- ICONOS -->
+  <!-- ICONOS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
+  <style>
+    /* =========================================================
+       RESET
+    ========================================================= */
 
-    <style>
-      /* =====================================================
-       CONFIGURACIÓN GENERAL
-    ===================================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
 
-      :root {
-        --sidebar: #07111f;
-        --sidebar-light: #0d1b2d;
+    body {
+      font-family:
+        "Segoe UI",
+        Inter,
+        Roboto,
+        Arial,
+        sans-serif;
 
-        --primary: #6366f1;
-        --primary-light: #818cf8;
+      background: #eef2f7;
+      color: #172033;
+    }
 
-        --text: #f8fafc;
-        --text-soft: #d4deea;
+    /* =========================================================
+       VARIABLES
+    ========================================================= */
 
-        --muted: #7d8fa5;
+    :root {
+      --sidebar-width: 310px;
+      --sidebar-collapsed: 78px;
 
-        --background: #eef2f7;
-      }
+      --sidebar-bg: #07111f;
+      --sidebar-bg-2: #0d1b2d;
 
-      html {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-      }
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --primary-light: #818cf8;
 
-      body {
-        width: 100%;
-        height: 100vh;
-        overflow: hidden;
+      --text: #f8fafc;
+      --text-soft: #d7e0ec;
+      --muted: #7d8fa5;
 
-        font-family: "Segoe UI", Inter, Arial, sans-serif;
+      --background: #eef2f7;
 
-        background: var(--background);
+      --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-        display: flex;
-      }
+    /* =========================================================
+       APP
+    ========================================================= */
 
-      /* =====================================================
+    .app {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* =========================================================
        SIDEBAR
-    ===================================================== */
+    ========================================================= */
 
-      .sidebar {
-        width: 325px;
-        height: 100vh;
+    .sidebar {
+      width: var(--sidebar-width);
+      min-width: var(--sidebar-width);
+      height: 100vh;
 
-        flex-shrink: 0;
+      position: relative;
 
-        position: relative;
+      display: flex;
+      flex-direction: column;
 
-        display: flex;
-        flex-direction: column;
-
-        background: linear-gradient(
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(99, 102, 241, 0.18),
+          transparent 28%
+        ),
+        linear-gradient(
           145deg,
-          var(--sidebar),
-          var(--sidebar-light)
+          var(--sidebar-bg),
+          var(--sidebar-bg-2)
         );
 
-        box-shadow: 15px 0 40px rgba(15, 23, 42, 0.15);
+      box-shadow: 8px 0 35px rgba(15, 23, 42, 0.15);
 
-        overflow: hidden;
+      z-index: 100;
 
-        z-index: 20;
-      }
+      transition:
+        width var(--transition),
+        min-width var(--transition),
+        transform var(--transition);
 
-      .sidebar::before {
-        content: "";
+      overflow: hidden;
+    }
 
-        position: absolute;
+    /* =========================================================
+       SIDEBAR CONTRAÍDO
+    ========================================================= */
 
-        width: 350px;
-        height: 350px;
+    .sidebar.collapsed {
+      width: var(--sidebar-collapsed);
+      min-width: var(--sidebar-collapsed);
+    }
 
-        top: -200px;
-        right: -150px;
+    /* =========================================================
+       HEADER
+    ========================================================= */
 
-        border-radius: 50%;
+    .header {
+      position: relative;
+      padding: 20px 16px 14px;
+      flex-shrink: 0;
+    }
 
-        background: radial-gradient(
-          circle,
-          rgba(99, 102, 241, 0.25),
-          transparent 70%
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-icon {
+      width: 46px;
+      height: 46px;
+      min-width: 46px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #6366f1,
+          #7c3aed
         );
 
-        pointer-events: none;
+      color: white;
+
+      box-shadow:
+        0 8px 22px rgba(99, 102, 241, 0.32);
+    }
+
+    .brand-icon i {
+      font-size: 19px;
+    }
+
+    .brand-text {
+      min-width: 0;
+      transition:
+        opacity var(--transition),
+        width var(--transition);
+    }
+
+    .brand-title {
+      color: white;
+      font-size: 14px;
+      line-height: 1.25;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      margin-top: 4px;
+      color: #73859b;
+      font-size: 8px;
+      white-space: nowrap;
+    }
+
+    /* =========================================================
+       BOTÓN COLAPSAR
+    ========================================================= */
+
+    .collapse-button {
+      position: absolute;
+
+      right: 12px;
+      top: 22px;
+
+      width: 30px;
+      height: 30px;
+
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 9px;
+
+      background: rgba(255, 255, 255, 0.045);
+
+      color: #8ea0b5;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+
+      transition: 0.25s ease;
+
+      z-index: 5;
+    }
+
+    .collapse-button:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .collapse-button i {
+      transition: transform var(--transition);
+    }
+
+    .sidebar.collapsed .collapse-button i {
+      transform: rotate(180deg);
+    }
+
+    /* =========================================================
+       SEARCH
+    ========================================================= */
+
+    .search-wrapper {
+      margin-top: 18px;
+    }
+
+    .search {
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 9px;
+
+      padding: 0 12px;
+
+      border-radius: 11px;
+
+      background: rgba(255, 255, 255, 0.045);
+
+      border: 1px solid rgba(255, 255, 255, 0.06);
+
+      transition: 0.25s ease;
+    }
+
+    .search:focus-within {
+      border-color: rgba(129, 140, 248, 0.45);
+      background: rgba(255, 255, 255, 0.065);
+    }
+
+    .search i {
+      color: #60738a;
+      font-size: 11px;
+    }
+
+    .search input {
+      width: 100%;
+
+      border: none;
+      outline: none;
+
+      background: transparent;
+
+      color: white;
+
+      font-size: 10px;
+    }
+
+    .search input::placeholder {
+      color: #60738a;
+    }
+
+    /* =========================================================
+       MENÚ
+    ========================================================= */
+
+    .menu {
+      flex: 1;
+
+      overflow-y: auto;
+
+      padding: 3px 10px 25px;
+
+      scrollbar-width: thin;
+      scrollbar-color: #26374d transparent;
+    }
+
+    .menu::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .menu::-webkit-scrollbar-thumb {
+      background: #26374d;
+      border-radius: 20px;
+    }
+
+    .section-label {
+      padding: 13px 10px 9px;
+
+      color: #50637a;
+
+      font-size: 8px;
+
+      font-weight: 800;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+
+      white-space: nowrap;
+    }
+
+    /* =========================================================
+       MENU ITEM
+    ========================================================= */
+
+    .menu-item {
+      margin-bottom: 4px;
+    }
+
+    .menu-button {
+      width: 100%;
+
+      min-height: 53px;
+
+      padding: 7px 9px;
+
+      border: none;
+      border-radius: 13px;
+
+      background: transparent;
+
+      display: flex;
+      align-items: center;
+
+      cursor: pointer;
+
+      color: white;
+
+      transition: 0.23s ease;
+
+      position: relative;
+    }
+
+    .menu-button:hover {
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateX(1px);
+    }
+
+    .menu-button.open {
+      background:
+        linear-gradient(
+          90deg,
+          rgba(99, 102, 241, 0.19),
+          rgba(99, 102, 241, 0.025)
+        );
+    }
+
+    /* =========================================================
+       ICON
+    ========================================================= */
+
+    .menu-icon {
+      width: 38px;
+      height: 38px;
+
+      min-width: 38px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-right: 10px;
+
+      border-radius: 11px;
+
+      background: rgba(255, 255, 255, 0.055);
+
+      color: #8799af;
+
+      transition: 0.23s ease;
+    }
+
+    .menu-icon i {
+      font-size: 14px;
+    }
+
+    .menu-button.open .menu-icon {
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #6366f1,
+          #7c3aed
+        );
+
+      box-shadow:
+        0 6px 17px rgba(99, 102, 241, 0.28);
+    }
+
+    /* =========================================================
+       TEXT MENU
+    ========================================================= */
+
+    .menu-content {
+      flex: 1;
+      min-width: 0;
+
+      text-align: left;
+
+      transition:
+        opacity var(--transition),
+        width var(--transition);
+    }
+
+    .menu-name {
+      display: block;
+
+      color: #dce5ef;
+
+      font-size: 10.5px;
+
+      font-weight: 650;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .menu-description {
+      display: block;
+
+      margin-top: 3px;
+
+      color: #61748a;
+
+      font-size: 8px;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* =========================================================
+       ARROW
+    ========================================================= */
+
+    .menu-arrow {
+      margin-left: 7px;
+
+      color: #566a81;
+
+      font-size: 8px;
+
+      transition: 0.3s ease;
+    }
+
+    .menu-button.open .menu-arrow {
+      color: #a5adff;
+      transform: rotate(180deg);
+    }
+
+    /* =========================================================
+       SUBMENU
+    ========================================================= */
+
+    .submenu {
+      max-height: 0;
+
+      opacity: 0;
+
+      overflow: hidden;
+
+      transition:
+        max-height 0.4s ease,
+        opacity 0.25s ease;
+    }
+
+    .submenu.open {
+      max-height: 1000px;
+      opacity: 1;
+    }
+
+    .submenu-inner {
+      padding:
+        3px
+        7px
+        8px
+        57px;
+    }
+
+    .submenu a {
+      min-height: 35px;
+
+      padding: 6px 9px;
+
+      display: flex;
+      align-items: center;
+
+      border-radius: 8px;
+
+      color: #8192a8;
+
+      text-decoration: none;
+
+      font-size: 9px;
+
+      transition: 0.2s ease;
+    }
+
+    .submenu a::before {
+      content: "";
+
+      width: 4px;
+      height: 4px;
+
+      min-width: 4px;
+
+      margin-right: 8px;
+
+      border-radius: 50%;
+
+      background: #465970;
+
+      transition: 0.2s ease;
+    }
+
+    .submenu a:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.045);
+      transform: translateX(2px);
+    }
+
+    .submenu a.active {
+      color: white;
+      background: rgba(99, 102, 241, 0.14);
+    }
+
+    .submenu a.active::before {
+      background: #818cf8;
+
+      box-shadow:
+        0 0 8px rgba(129, 140, 248, 0.9);
+    }
+
+    /* =========================================================
+       SIDEBAR CONTRAÍDO
+    ========================================================= */
+
+    .sidebar.collapsed .brand-text,
+    .sidebar.collapsed .search-wrapper,
+    .sidebar.collapsed .section-label,
+    .sidebar.collapsed .menu-content,
+    .sidebar.collapsed .menu-arrow {
+      opacity: 0;
+      width: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .sidebar.collapsed .header {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .sidebar.collapsed .brand {
+      justify-content: center;
+    }
+
+    .sidebar.collapsed .collapse-button {
+      right: 50%;
+      transform: translateX(50%);
+      top: 76px;
+    }
+
+    .sidebar.collapsed .collapse-button i {
+      transform: rotate(180deg);
+    }
+
+    .sidebar.collapsed .menu {
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 45px;
+    }
+
+    .sidebar.collapsed .menu-button {
+      justify-content: center;
+      padding: 7px;
+    }
+
+    .sidebar.collapsed .menu-icon {
+      margin-right: 0;
+    }
+
+    .sidebar.collapsed .submenu {
+      display: none;
+    }
+
+    /* =========================================================
+       TOOLTIP DEL MENÚ CONTRAÍDO
+    ========================================================= */
+
+    .sidebar.collapsed .menu-button {
+      position: relative;
+    }
+
+    .sidebar.collapsed .menu-button::after {
+      content: attr(data-tooltip);
+
+      position: absolute;
+
+      left: calc(100% + 12px);
+      top: 50%;
+
+      transform:
+        translateY(-50%)
+        translateX(-5px);
+
+      padding: 8px 11px;
+
+      background: #111d2e;
+
+      color: white;
+
+      border: 1px solid rgba(255, 255, 255, 0.08);
+
+      border-radius: 8px;
+
+      font-size: 9px;
+
+      white-space: nowrap;
+
+      opacity: 0;
+      visibility: hidden;
+
+      pointer-events: none;
+
+      box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25);
+
+      transition: 0.2s ease;
+
+      z-index: 9999;
+    }
+
+    .sidebar.collapsed .menu-button:hover::after {
+      opacity: 1;
+      visibility: visible;
+
+      transform:
+        translateY(-50%)
+        translateX(0);
+    }
+
+    /* =========================================================
+       CONTENIDO
+    ========================================================= */
+
+    .content {
+      flex: 1;
+
+      min-width: 0;
+
+      height: 100vh;
+
+      position: relative;
+
+      background: #eef2f7;
+
+      overflow: hidden;
+
+      transition: width var(--transition);
+    }
+
+    /* =========================================================
+       DASHBOARD
+    ========================================================= */
+
+    .powerbi-wrapper {
+      position: absolute;
+
+      inset: 0;
+
+      padding: 7px;
+
+      transition: padding 0.25s ease;
+    }
+
+    #powerbi {
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      border: none;
+
+      border-radius: 11px;
+
+      background: white;
+
+      box-shadow:
+        0 4px 25px rgba(15, 23, 42, 0.09);
+    }
+
+    /* =========================================================
+       BARRA FLOTANTE DEL DASHBOARD
+    ========================================================= */
+
+    .dashboard-controls {
+      position: absolute;
+
+      top: 17px;
+      right: 17px;
+
+      display: flex;
+      gap: 6px;
+
+      z-index: 20;
+    }
+
+    .dashboard-control {
+      width: 34px;
+      height: 34px;
+
+      border: 1px solid rgba(15, 23, 42, 0.07);
+
+      border-radius: 9px;
+
+      background: rgba(255, 255, 255, 0.92);
+
+      backdrop-filter: blur(10px);
+
+      color: #536176;
+
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      box-shadow:
+        0 4px 14px rgba(15, 23, 42, 0.1);
+
+      transition: 0.2s ease;
+    }
+
+    .dashboard-control:hover {
+      color: #4f46e5;
+
+      transform: translateY(-1px);
+
+      box-shadow:
+        0 7px 18px rgba(15, 23, 42, 0.14);
+    }
+
+    /* =========================================================
+       LOADING
+    ========================================================= */
+
+    .loading {
+      position: absolute;
+
+      inset: 0;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      pointer-events: none;
+
+      opacity: 0;
+
+      background: rgba(238, 242, 247, 0.5);
+
+      backdrop-filter: blur(2px);
+
+      transition: 0.2s ease;
+
+      z-index: 50;
+    }
+
+    .loading.show {
+      opacity: 1;
+    }
+
+    .spinner {
+      width: 42px;
+      height: 42px;
+
+      border-radius: 50%;
+
+      border: 3px solid #dce2eb;
+
+      border-top-color: #6366f1;
+
+      animation:
+        girar 0.75s linear infinite;
+    }
+
+    @keyframes girar {
+      to {
+        transform: rotate(360deg);
       }
+    }
 
-      /* =====================================================
-       ENCABEZADO
-    ===================================================== */
+    /* =========================================================
+       MOBILE TOPBAR
+    ========================================================= */
 
-      .header {
-        padding: 27px 22px 15px;
+    .mobile-topbar {
+      display: none;
+    }
 
-        position: relative;
+    .mobile-menu-button {
+      width: 38px;
+      height: 38px;
 
-        z-index: 2;
-      }
+      border: none;
 
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 13px;
-      }
+      border-radius: 10px;
 
-      .brand-icon {
-        width: 50px;
-        height: 50px;
+      background: rgba(255, 255, 255, 0.08);
 
-        border-radius: 16px;
+      color: white;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      cursor: pointer;
+    }
 
-        background: linear-gradient(135deg, #6366f1, #7c3aed);
+    .mobile-title {
+      color: white;
 
-        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.32);
+      font-size: 12px;
 
-        flex-shrink: 0;
-      }
+      font-weight: 700;
 
-      .brand-icon i {
-        color: white;
-        font-size: 20px;
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+    }
+
+    /* =========================================================
+       OVERLAY MOBILE
+    ========================================================= */
+
+    .sidebar-overlay {
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(7, 17, 31, 0.55);
+
+      backdrop-filter: blur(2px);
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      pointer-events: none;
+
+      transition: 0.25s ease;
+
+      z-index: 90;
+    }
+
+    .sidebar-overlay.show {
+      opacity: 1;
+
+      visibility: visible;
+
+      pointer-events: auto;
+    }
+
+    /* =========================================================
+       TABLET
+    ========================================================= */
+
+    @media (max-width: 1100px) {
+      :root {
+        --sidebar-width: 275px;
       }
 
       .brand-title {
-        color: white;
-
-        font-size: 16px;
-        font-weight: 750;
-
-        letter-spacing: -0.2px;
-      }
-
-      .brand-subtitle {
-        color: #71839a;
-
-        font-size: 9px;
-
-        margin-top: 5px;
-      }
-
-      /* =====================================================
-       BUSCADOR
-    ===================================================== */
-
-      .search {
-        height: 43px;
-
-        margin-top: 21px;
-
-        padding: 0 13px;
-
-        display: flex;
-        align-items: center;
-
-        gap: 9px;
-
-        border-radius: 13px;
-
-        background: rgba(255, 255, 255, 0.045);
-
-        border: 1px solid rgba(255, 255, 255, 0.06);
-      }
-
-      .search i {
-        color: #61748b;
-        font-size: 12px;
-      }
-
-      .search input {
-        width: 100%;
-
-        border: none;
-        outline: none;
-
-        background: transparent;
-
-        color: white;
-
-        font-size: 11px;
-      }
-
-      .search input::placeholder {
-        color: #60738a;
-      }
-
-      /* =====================================================
-       MENU
-    ===================================================== */
-
-      .menu {
-        flex: 1;
-
-        overflow-y: auto;
-
-        padding: 5px 13px 25px;
-
-        position: relative;
-
-        z-index: 2;
-      }
-
-      .menu::-webkit-scrollbar {
-        width: 4px;
-      }
-
-      .menu::-webkit-scrollbar-thumb {
-        background: #26374d;
-        border-radius: 20px;
-      }
-
-      .section-label {
-        padding: 14px 10px 10px;
-
-        color: #50637a;
-
-        font-size: 9px;
-
-        font-weight: 700;
-
-        letter-spacing: 1.6px;
-
-        text-transform: uppercase;
-      }
-
-      /* =====================================================
-       CATEGORÍA
-    ===================================================== */
-
-      .menu-item {
-        margin-bottom: 5px;
-      }
-
-      .menu-button {
-        width: 100%;
-
-        min-height: 57px;
-
-        border: none;
-
-        border-radius: 15px;
-
-        padding: 8px 11px;
-
-        display: flex;
-
-        align-items: center;
-
-        cursor: pointer;
-
-        color: white;
-
-        background: transparent;
-
-        transition: 0.25s ease;
-      }
-
-      .menu-button:hover {
-        background: rgba(255, 255, 255, 0.045);
-
-        transform: translateX(2px);
-      }
-
-      .menu-button.open {
-        background: linear-gradient(
-          90deg,
-          rgba(99, 102, 241, 0.18),
-          rgba(99, 102, 241, 0.025)
-        );
-      }
-
-      .menu-icon {
-        width: 40px;
-        height: 40px;
-
-        flex-shrink: 0;
-
-        margin-right: 11px;
-
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
-        border-radius: 12px;
-
-        color: #8799af;
-
-        background: rgba(255, 255, 255, 0.055);
-
-        transition: 0.25s ease;
-      }
-
-      .menu-button.open .menu-icon {
-        color: white;
-
-        background: linear-gradient(135deg, #6366f1, #7c3aed);
-
-        box-shadow: 0 7px 18px rgba(99, 102, 241, 0.25);
-      }
-
-      .menu-content {
-        flex: 1;
-
-        min-width: 0;
-
-        text-align: left;
+        font-size: 13px;
       }
 
       .menu-name {
-        display: block;
+        font-size: 10px;
+      }
+    }
 
-        color: #dce5ef;
+    /* =========================================================
+       MOBILE
+    ========================================================= */
 
-        font-size: 11px;
-
-        font-weight: 650;
+    @media (max-width: 768px) {
+      html,
+      body {
+        width: 100%;
+        height: 100dvh;
       }
 
-      .menu-description {
-        display: block;
-
-        margin-top: 4px;
-
-        color: #61748a;
-
-        font-size: 9px;
+      .app {
+        height: 100dvh;
       }
 
-      .menu-arrow {
-        color: #566a81;
+      /* TOPBAR */
 
-        font-size: 9px;
-
-        transition: 0.3s ease;
-      }
-
-      .menu-button.open .menu-arrow {
-        color: #9da7ff;
-
-        transform: rotate(180deg);
-      }
-
-      /* =====================================================
-       SUBMENÚ
-    ===================================================== */
-
-      .submenu {
-        max-height: 0;
-
-        opacity: 0;
-
-        overflow: hidden;
-
-        transition:
-          max-height 0.4s ease,
-          opacity 0.3s ease;
-      }
-
-      .submenu.open {
-        max-height: 900px;
-
-        opacity: 1;
-      }
-
-      .submenu-inner {
-        padding: 3px 8px 8px 61px;
-      }
-
-      .submenu a {
-        min-height: 37px;
-
-        padding: 6px 10px;
+      .mobile-topbar {
+        position: fixed;
 
         display: flex;
 
         align-items: center;
 
-        border-radius: 9px;
+        gap: 10px;
 
-        color: #8192a8;
+        top: 0;
+        left: 0;
+        right: 0;
 
-        text-decoration: none;
+        height: 54px;
 
-        font-size: 10px;
+        padding: 7px 10px;
 
-        cursor: pointer;
+        background:
+          linear-gradient(
+            145deg,
+            var(--sidebar-bg),
+            var(--sidebar-bg-2)
+          );
 
-        transition: 0.2s ease;
+        box-shadow:
+          0 4px 20px rgba(15, 23, 42, 0.22);
+
+        z-index: 80;
       }
 
-      .submenu a::before {
-        content: "";
+      /* SIDEBAR */
 
-        width: 4px;
-        height: 4px;
+      .sidebar {
+        position: fixed;
 
-        margin-right: 9px;
+        top: 0;
+        left: 0;
 
-        flex-shrink: 0;
+        width: min(88vw, 320px);
+        min-width: min(88vw, 320px);
 
-        border-radius: 50%;
+        height: 100dvh;
 
-        background: #465970;
+        transform: translateX(-105%);
 
-        transition: 0.2s ease;
+        z-index: 200;
       }
 
-      .submenu a:hover {
-        color: white;
-
-        background: rgba(255, 255, 255, 0.045);
-
-        transform: translateX(3px);
+      .sidebar.mobile-open {
+        transform: translateX(0);
       }
 
-      .submenu a.active {
-        color: white;
-
-        background: rgba(99, 102, 241, 0.13);
+      .sidebar.collapsed {
+        width: min(88vw, 320px);
+        min-width: min(88vw, 320px);
       }
 
-      .submenu a.active::before {
-        background: #818cf8;
+      .sidebar.collapsed .brand-text,
+      .sidebar.collapsed .search-wrapper,
+      .sidebar.collapsed .section-label,
+      .sidebar.collapsed .menu-content,
+      .sidebar.collapsed .menu-arrow {
+        opacity: 1;
 
-        box-shadow: 0 0 9px rgba(129, 140, 248, 0.9);
+        width: auto;
+
+        overflow: visible;
+
+        pointer-events: auto;
       }
 
-      /* =====================================================
-       CONTENIDO POWER BI
-    ===================================================== */
+      .sidebar.collapsed .menu-content {
+        display: block;
+      }
+
+      .sidebar.collapsed .menu-button {
+        justify-content: flex-start;
+      }
+
+      .sidebar.collapsed .menu-icon {
+        margin-right: 10px;
+      }
+
+      .sidebar.collapsed .submenu {
+        display: block;
+      }
+
+      .sidebar.collapsed .collapse-button {
+        right: 12px;
+
+        top: 22px;
+
+        transform: none;
+      }
+
+      .sidebar.collapsed .menu {
+        padding-top: 3px;
+      }
+
+      .sidebar.collapsed .menu-button::after {
+        display: none;
+      }
+
+      /* CONTENT */
 
       .content {
-        flex: 1;
+        width: 100%;
+        height: 100dvh;
 
-        height: 100vh;
-
-        position: relative;
-
-        background: #eef2f7;
-
-        overflow: hidden;
+        padding-top: 54px;
       }
 
       .powerbi-wrapper {
-        position: absolute;
+        top: 54px;
+        right: 0;
+        bottom: 0;
+        left: 0;
 
-        inset: 0;
-
-        padding: 10px;
+        padding: 0;
       }
 
       #powerbi {
         width: 100%;
-
         height: 100%;
 
-        display: block;
+        border-radius: 0;
 
-        border: none;
-
-        border-radius: 13px;
-
-        background: white;
-
-        box-shadow: 0 5px 30px rgba(15, 23, 42, 0.09);
+        box-shadow: none;
       }
 
-      /* =====================================================
-       LOADING
-    ===================================================== */
-
-      .loading {
-        position: absolute;
-
-        inset: 0;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        pointer-events: none;
-
-        opacity: 0;
-
-        background: rgba(238, 242, 247, 0.65);
-
-        backdrop-filter: blur(3px);
-
-        transition: 0.2s ease;
-
-        z-index: 5;
+      .dashboard-controls {
+        top: 64px;
+        right: 10px;
       }
 
-      .loading.show {
-        opacity: 1;
+      .dashboard-control {
+        width: 32px;
+        height: 32px;
       }
+    }
 
-      .spinner {
-        width: 38px;
-        height: 38px;
+    /* =========================================================
+       CELULARES PEQUEÑOS
+    ========================================================= */
 
-        border-radius: 50%;
-
-        border: 3px solid #dce2eb;
-
-        border-top-color: #6366f1;
-
-        animation: girar 0.75s linear infinite;
-      }
-
-      @keyframes girar {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      /* =====================================================
-       RESPONSIVE
-    ===================================================== */
-
+    @media (max-width: 480px) {
       .mobile-topbar {
-        display: none;
+        height: 50px;
       }
 
-      .menu-toggle-mobile {
-        border: 0;
-
-        background: transparent;
-
-        color: white;
-
-        width: 42px;
-        height: 42px;
-
-        border-radius: 11px;
-
-        cursor: pointer;
-
-        font-size: 18px;
+      .content {
+        padding-top: 50px;
       }
 
-      .sidebar-overlay {
-        display: none;
+      .powerbi-wrapper {
+        top: 50px;
       }
 
-      @media (max-width: 1100px) {
-        .sidebar {
-          width: 285px;
-        }
-
-        .brand-title {
-          font-size: 14px;
-        }
+      .dashboard-controls {
+        top: 58px;
+        right: 8px;
       }
 
-      @media (max-width: 768px) {
-        body {
-          display: block;
-
-          overflow: hidden;
-
-          height: 100dvh;
-        }
-
-        .mobile-topbar {
-          position: fixed;
-
-          top: 0;
-          left: 0;
-          right: 0;
-
-          height: 58px;
-
-          z-index: 100;
-
-          display: flex;
-
-          align-items: center;
-
-          gap: 10px;
-
-          padding: 8px 10px;
-
-          background: linear-gradient(
-            145deg,
-            var(--sidebar),
-            var(--sidebar-light)
-          );
-
-          box-shadow: 0 5px 20px rgba(15, 23, 42, 0.2);
-        }
-
-        .mobile-title {
-          min-width: 0;
-
-          color: white;
-
-          font-size: 13px;
-
-          font-weight: 700;
-
-          white-space: nowrap;
-
-          overflow: hidden;
-
-          text-overflow: ellipsis;
-        }
-
-        .sidebar {
-          position: fixed;
-
-          top: 0;
-          left: 0;
-
-          width: min(86vw, 320px);
-
-          height: 100dvh;
-
-          transform: translateX(-105%);
-
-          transition: transform 0.28s ease;
-
-          z-index: 200;
-
-          box-shadow: 12px 0 35px rgba(15, 23, 42, 0.3);
-        }
-
-        .sidebar.mobile-open {
-          transform: translateX(0);
-        }
-
-        .sidebar-overlay {
-          position: fixed;
-
-          inset: 0;
-
-          display: block;
-
-          background: rgba(7, 17, 31, 0.48);
-
-          opacity: 0;
-
-          pointer-events: none;
-
-          transition: opacity 0.25s ease;
-
-          z-index: 150;
-        }
-
-        .sidebar-overlay.show {
-          opacity: 1;
-
-          pointer-events: auto;
-        }
-
-        .content {
-          width: 100%;
-
-          height: 100dvh;
-
-          padding-top: 58px;
-        }
-
-        .powerbi-wrapper {
-          position: absolute;
-
-          top: 58px;
-          right: 0;
-          bottom: 0;
-          left: 0;
-
-          padding: 0;
-        }
-
-        #powerbi {
-          width: 100%;
-
-          height: 100%;
-
-          border-radius: 0;
-
-          box-shadow: none;
-        }
-
-        .header {
-          padding-top: 20px;
-        }
+      .dashboard-control {
+        width: 30px;
+        height: 30px;
       }
+    }
+  </style>
+</head>
 
-      @media (max-width: 480px) {
-        .mobile-topbar {
-          height: 54px;
-        }
+<body>
 
-        .content {
-          padding-top: 54px;
-        }
+  <div class="app">
 
-        .powerbi-wrapper {
-          top: 54px;
-        }
-
-        .sidebar {
-          width: 88vw;
-        }
-
-        .menu-button {
-          min-height: 54px;
-        }
-
-        .menu-icon {
-          width: 38px;
-          height: 38px;
-
-          margin-right: 9px;
-        }
-
-        .menu-name {
-          font-size: 11px;
-        }
-
-        .submenu-inner {
-          padding-left: 48px;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
     <!-- =====================================================
-       BARRA SUPERIOR PARA CELULAR / TABLET
-  ===================================================== -->
+         TOPBAR MOBILE
+    ===================================================== -->
 
     <div class="mobile-topbar">
-      ```
+
       <button
-        class="menu-toggle-mobile"
+        class="mobile-menu-button"
         onclick="abrirMenuMobile()"
         aria-label="Abrir menú"
       >
         <i class="fa-solid fa-bars"></i>
       </button>
 
-      <div class="mobile-title">Ministerio de Educación - DGFM</div>
-      ```
+      <div class="mobile-title">
+        Ministerio de Educación - DGFM
+      </div>
+
     </div>
 
-    <!-- OVERLAY MOBILE -->
+
+    <!-- =====================================================
+         OVERLAY MOBILE
+    ===================================================== -->
 
     <div
       class="sidebar-overlay"
@@ -782,237 +1138,259 @@
       onclick="cerrarMenuMobile()"
     ></div>
 
-    <!-- =====================================================
-       MENÚ IZQUIERDO
-  ===================================================== -->
 
-    <aside class="sidebar">
-      ```
-      <!-- =================================================
-     ENCABEZADO
-================================================= -->
+    <!-- =====================================================
+         SIDEBAR
+    ===================================================== -->
+
+    <aside
+      class="sidebar"
+      id="sidebar"
+    >
+
+      <!-- HEADER -->
 
       <div class="header">
+
         <div class="brand">
+
           <div class="brand-icon">
             <i class="fa-solid fa-chart-pie"></i>
           </div>
 
-          <div>
-            <div class="brand-title">Ministerio de Educación - DGFM</div>
+          <div class="brand-text">
 
-            <div class="brand-subtitle">Centro de análisis e información</div>
+            <div class="brand-title">
+              Ministerio de Educación - DGFM
+            </div>
+
+            <div class="brand-subtitle">
+              Centro de análisis e información
+            </div>
+
           </div>
+
         </div>
+
+
+        <!-- BOTÓN CONTRAER -->
+
+        <button
+          class="collapse-button"
+          onclick="toggleSidebar()"
+          title="Contraer menú"
+        >
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
 
         <!-- BUSCADOR -->
 
-        <div class="search">
-          <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="search-wrapper">
 
-          <input
-            type="text"
-            id="search"
-            placeholder="Buscar una opción..."
-            oninput="buscar()"
-          />
+          <div class="search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+              type="text"
+              id="search"
+              placeholder="Buscar una opción..."
+              oninput="buscar()"
+            />
+
+          </div>
+
         </div>
+
       </div>
 
-      <!-- =================================================
-     MENÚ
-================================================= -->
+
+      <!-- ===================================================
+           MENÚ
+      =================================================== -->
 
       <div class="menu">
-        <div class="section-label">Módulos de información</div>
 
-  <!-- =================================================
-       1. POBLACIÓN DE MAESTROS
-  ================================================= -->
+        <div class="section-label">
+          Módulos de información
+        </div>
+
+
+        <!-- =================================================
+             1. POBLACIÓN DE MAESTROS
+        ================================================= -->
 
         <div class="menu-item">
-          <button class="menu-button open" onclick="toggleMenu(this)">
+
+          <button
+            class="menu-button open"
+            data-tooltip="Población de Maestros"
+            onclick="toggleMenu(this)"
+          >
+
             <span class="menu-icon">
               <i class="fa-solid fa-chalkboard-user"></i>
             </span>
 
             <span class="menu-content">
-              <span class="menu-name"> Población de Maestros </span>
 
-              <span class="menu-description"> Personal docente </span>
+              <span class="menu-name">
+                Población de Maestros
+              </span>
+
+              <span class="menu-description">
+                Personal docente
+              </span>
+
             </span>
 
             <i class="fa-solid fa-chevron-down menu-arrow"></i>
+
           </button>
 
+
           <div class="submenu open">
+
             <div class="submenu-inner">
-              <!-- EVOLUCIÓN -->
 
               <a
                 href="#"
                 class="active"
                 data-page="evolucion"
-                onclick="
-                  cargarPagina('evolucion', this);
-                  return false;
-                "
+                onclick="cargarPagina('evolucion', this); return false;"
               >
-                Planilla de maestros 
+                Planilla de maestros
               </a>
-
-              <!-- ESPECIALIDAD 35.474 -->
 
               <a
                 href="#"
                 data-page="especialidad_35474"
-                onclick="
-                  cargarPagina('especialidad_35474', this);
-                  return false;
-                "
+                onclick="cargarPagina('especialidad_35474', this); return false;"
               >
                 Maestros por formación - 35.474
               </a>
 
-              <!-- ESPECIALIDAD 164.448 -->
-
               <a
                 href="#"
                 data-page="especialidad_164448"
-                onclick="
-                  cargarPagina('especialidad_164448', this);
-                  return false;
-                "
+                onclick="cargarPagina('especialidad_164448', this); return false;"
               >
                 Maestros por formación - 164.448
               </a>
 
-              <!-- TOTAL VS TRABAJANDO 35.474 -->
-
               <a
                 href="#"
                 data-page="total_trabajando_35474"
-                onclick="
-                  cargarPagina('total_trabajando_35474', this);
-                  return false;
-                "
+                onclick="cargarPagina('total_trabajando_35474', this); return false;"
               >
                 Total vs trabajando - 35.474
               </a>
 
-              <!-- TOTAL VS TRABAJANDO 164.448 -->
-
               <a
                 href="#"
                 data-page="total_trabajando_164448"
-                onclick="
-                  cargarPagina('total_trabajando_164448', this);
-                  return false;
-                "
+                onclick="cargarPagina('total_trabajando_164448', this); return false;"
               >
                 Total vs trabajando - 164.448
               </a>
+
               <a
                 href="#"
                 data-page="total_modalidadB3"
-                onclick="
-                  cargarPagina('total_modalidadB3', this);
-                  return false;
-                "
+                onclick="cargarPagina('total_modalidadB3', this); return false;"
               >
                 Maestros con modalidad B3 - 164.448
               </a>
-                            <a
-                href="#"
-                data-page="total_modalidadB3_est"
-                onclick="
-                  cargarPagina('total_modalidadB3_est', this);
-                  return false;
-                "
-              >
-                Estudiantes con modalidad B3 General
-                              
-              </a>
-              
+
               <a
                 href="#"
                 data-page="total_modalidadB3_est"
-                onclick="
-                  cargarPagina('total_modalidadB3_esp', this);
-                  return false;
-                "
+                onclick="cargarPagina('total_modalidadB3_est', this); return false;"
               >
-                Estudiantes con modalidad B3 Específico (por año)
-                              
+                Estudiantes con modalidad B3 General
               </a>
+
+              <a
+                href="#"
+                data-page="total_modalidadB3_esp"
+                onclick="cargarPagina('total_modalidadB3_esp', this); return false;"
+              >
+                Estudiantes con modalidad B3 Específico
+              </a>
+
               <a
                 href="#"
                 data-page="total_est_2026"
-                onclick="
-                  cargarPagina('total_est_2026', this);
-                  return false;
-                "
+                onclick="cargarPagina('total_est_2026', this); return false;"
               >
                 Estudiantes ESFM 2026
-                              
               </a>
-              <!-- ESFM 35.474 -->
 
               <a
                 href="#"
                 data-page="esfm_35474"
-                onclick="
-                  cargarPagina('esfm_35474', this);
-                  return false;
-                "
+                onclick="cargarPagina('esfm_35474', this); return false;"
               >
                 Maestros por ESFM/UA - 35.474
               </a>
 
-              <!-- UE 164.448 -->
-
               <a
                 href="#"
                 data-page="ue_164448"
-                onclick="
-                  cargarPagina('ue_164448', this);
-                  return false;
-                "
+                onclick="cargarPagina('ue_164448', this); return false;"
               >
                 Maestros por UE - 164.448
               </a>
+
             </div>
+
           </div>
+
         </div>
 
+
         <!-- =================================================
-       2. ANÁLISIS DE PERTINENCIA
-  ================================================= -->
+             2. PERTINENCIA
+        ================================================= -->
 
         <div class="menu-item">
-          <button class="menu-button" onclick="toggleMenu(this)">
+
+          <button
+            class="menu-button"
+            data-tooltip="Análisis de Pertinencia"
+            onclick="toggleMenu(this)"
+          >
+
             <span class="menu-icon">
               <i class="fa-solid fa-chart-column"></i>
             </span>
 
             <span class="menu-content">
-              <span class="menu-name"> Análisis de Pertinencia </span>
 
-              <span class="menu-description"> Evaluación de pertinencia </span>
+              <span class="menu-name">
+                Análisis de Pertinencia
+              </span>
+
+              <span class="menu-description">
+                Evaluación de pertinencia
+              </span>
+
             </span>
 
             <i class="fa-solid fa-chevron-down menu-arrow"></i>
+
           </button>
 
+
           <div class="submenu">
+
             <div class="submenu-inner">
+
               <a
                 href="#"
                 data-page="pertinencia"
-                onclick="
-                  cargarPagina('pertinencia', this);
-                  return false;
-                "
+                onclick="cargarPagina('pertinencia', this); return false;"
               >
                 Evolución de la pertinencia
               </a>
@@ -1020,10 +1398,7 @@
               <a
                 href="#"
                 data-page="no_pertinencia"
-                onclick="
-                  cargarPagina('no_pertinencia', this);
-                  return false;
-                "
+                onclick="cargarPagina('no_pertinencia', this); return false;"
               >
                 No pertinencia departamental - 35.474
               </a>
@@ -1031,10 +1406,7 @@
               <a
                 href="#"
                 data-page="estado_pertinencia"
-                onclick="
-                  cargarPagina('estado_pertinencia', this);
-                  return false;
-                "
+                onclick="cargarPagina('estado_pertinencia', this); return false;"
               >
                 Estado de pertinencia inicial / actual
               </a>
@@ -1042,746 +1414,1074 @@
               <a
                 href="#"
                 data-page="comparativa"
-                onclick="
-                  cargarPagina('comparativa', this);
-                  return false;
-                "
+                onclick="cargarPagina('comparativa', this); return false;"
               >
-                Comparativa de pertinencia en general - 164.448
+                Comparativa de pertinencia - 164.448
               </a>
+
             </div>
+
           </div>
+
         </div>
 
+
         <!-- =================================================
-       3. ANÁLISIS MIGRATORIO
-  ================================================= -->
+             3. MIGRATORIO
+        ================================================= -->
 
         <div class="menu-item">
-          <button class="menu-button" onclick="toggleMenu(this)">
+
+          <button
+            class="menu-button"
+            data-tooltip="Análisis Migratorio"
+            onclick="toggleMenu(this)"
+          >
+
             <span class="menu-icon">
               <i class="fa-solid fa-route"></i>
             </span>
 
             <span class="menu-content">
-              <span class="menu-name"> Análisis Migratorio </span>
+
+              <span class="menu-name">
+                Análisis Migratorio
+              </span>
 
               <span class="menu-description">
                 Origen, destino y movilidad
               </span>
+
             </span>
 
             <i class="fa-solid fa-chevron-down menu-arrow"></i>
+
           </button>
 
+
           <div class="submenu">
+
             <div class="submenu-inner">
-              <!-- MIGRATORIO 1 -->
+
               <a
                 href="#"
                 data-page="migratorio_2_bd"
-                onclick="
-                  cargarPagina('migratorio_2_bd', this);
-                  return false;
-                "
+                onclick="cargarPagina('migratorio_2_bd', this); return false;"
               >
                 Movimiento departamental - previo a ingreso a ESFM/UA
               </a>
+
               <a
                 href="#"
                 data-page="migratorio_1"
-                onclick="
-                  cargarPagina('migratorio_1', this);
-                  return false;
-                "
+                onclick="cargarPagina('migratorio_1', this); return false;"
               >
-                Movimiento departamental - posterior a egreso a ESFM/UA
+                Movimiento departamental - posterior a egreso
               </a>
-
-              <!-- MIGRATORIO 3 -->
 
               <a
                 href="#"
                 data-page="migratorio_3"
-                onclick="
-                  cargarPagina('migratorio_3', this);
-                  return false;
-                "
+                onclick="cargarPagina('migratorio_3', this); return false;"
               >
                 Movimiento departamental por origen - 35.474
               </a>
 
-              <!-- DISTRITAL -->
-
               <a
                 href="#"
                 data-page="distrital"
-                onclick="
-                  cargarPagina('distrital', this);
-                  return false;
-                "
+                onclick="cargarPagina('distrital', this); return false;"
               >
                 Movimiento distrital - 35.474
               </a>
+
             </div>
+
           </div>
+
         </div>
 
+
         <!-- =================================================
-       4. ESTUDIANTES
-  ================================================= -->
+             4. ESTUDIANTES
+        ================================================= -->
 
         <div class="menu-item">
-          <button class="menu-button" onclick="toggleMenu(this)">
+
+          <button
+            class="menu-button"
+            data-tooltip="Estudiantes"
+            onclick="toggleMenu(this)"
+          >
+
             <span class="menu-icon">
               <i class="fa-solid fa-user-graduate"></i>
             </span>
 
             <span class="menu-content">
-              <span class="menu-name"> Estudiantes </span>
 
-              <span class="menu-description"> Población estudiantil </span>
+              <span class="menu-name">
+                Estudiantes
+              </span>
+
+              <span class="menu-description">
+                Población estudiantil
+              </span>
+
             </span>
 
             <i class="fa-solid fa-chevron-down menu-arrow"></i>
+
           </button>
 
+
           <div class="submenu">
+
             <div class="submenu-inner">
-              <!-- GENERAL -->
 
               <a
                 href="#"
                 data-page="estudiantes"
-                onclick="
-                  cargarPagina('estudiantes', this);
-                  return false;
-                "
+                onclick="cargarPagina('estudiantes', this); return false;"
               >
                 Estudiantes general
               </a>
 
-              <!-- INICIAL -->
-
               <a
                 href="#"
                 data-page="inicial"
-                onclick="
-                  cargarPagina('inicial', this);
-                  return false;
-                "
+                onclick="cargarPagina('inicial', this); return false;"
               >
                 Estudiantes inicial
               </a>
 
-              <!-- PRIMARIA -->
-
               <a
                 href="#"
                 data-page="primaria"
-                onclick="
-                  cargarPagina('primaria', this);
-                  return false;
-                "
+                onclick="cargarPagina('primaria', this); return false;"
               >
                 Estudiantes primaria
               </a>
 
-              <!-- SECUNDARIA -->
-
               <a
                 href="#"
                 data-page="secundaria"
-                onclick="
-                  cargarPagina('secundaria', this);
-                  return false;
-                "
+                onclick="cargarPagina('secundaria', this); return false;"
               >
                 Estudiantes secundaria
               </a>
 
-              <!-- ALTERNATIVA -->
-
               <a
                 href="#"
                 data-page="alternativa"
-                onclick="
-                  cargarPagina('alternativa', this);
-                  return false;
-                "
+                onclick="cargarPagina('alternativa', this); return false;"
               >
                 Estudiantes alternativa
               </a>
 
-              <!-- ESPECIAL -->
-
               <a
                 href="#"
                 data-page="especial"
-                onclick="
-                  cargarPagina('especial', this);
-                  return false;
-                "
+                onclick="cargarPagina('especial', this); return false;"
               >
                 Estudiantes especial
               </a>
+
             </div>
+
           </div>
+
         </div>
-   <!-- =================================================
-       ADMITIDOS
-  ================================================= -->
+
+
+        <!-- =================================================
+             5. ADMITIDOS
+        ================================================= -->
 
         <div class="menu-item">
-          <button class="menu-button open" onclick="toggleMenu(this)">
+
+          <button
+            class="menu-button"
+            data-tooltip="Admitidos"
+            onclick="toggleMenu(this)"
+          >
+
             <span class="menu-icon">
-              <i class="fa-solid fa-chalkboard-user"></i>
+              <i class="fa-solid fa-user-check"></i>
             </span>
 
             <span class="menu-content">
-              <span class="menu-name"> Admitidos </span>
 
-              <span class="menu-description"> Personal estudiantil </span>
+              <span class="menu-name">
+                Admitidos
+              </span>
+
+              <span class="menu-description">
+                Población estudiantil
+              </span>
+
             </span>
 
             <i class="fa-solid fa-chevron-down menu-arrow"></i>
+
           </button>
 
-          <div class="submenu open">
+
+          <div class="submenu">
+
             <div class="submenu-inner">
-              <!-- EVOLUCIÓN -->
 
               <a
                 href="#"
-                class="active"
-                data-page="evolucion"
-                onclick="
-                  cargarPagina('inscritos', this);
-                  return false;
-                "
+                data-page="inscritos"
+                onclick="cargarPagina('inscritos', this); return false;"
               >
                 Inscritos
               </a>
 
-              <!-- ESPECIALIDAD 35.474 -->
-
               <a
                 href="#"
-                data-page="especialidad_35474"
-                onclick="
-                  cargarPagina('admitidos', this);
-                  return false;
-                "
+                data-page="admitidos"
+                onclick="cargarPagina('admitidos', this); return false;"
               >
                 Admitidos
               </a>
 
-              <!-- ESPECIALIDAD 164.448 -->
-
               <a
                 href="#"
-                data-page="especialidad_164448"
-                onclick="
-                  cargarPagina('admitidosi', this);
-                  return false;
-                "
+                data-page="admitidosi"
+                onclick="cargarPagina('admitidosi', this); return false;"
               >
                 Admitidos vs inscritos
               </a>
 
-            
             </div>
+
           </div>
+
         </div>
 
-
-
-         <!-- =================================================
-       ESPECIALIDADES
-  ================================================= -->
-
-        <div class="menu-item">
-          <button class="menu-button open" onclick="toggleMenu(this)">
-            <span class="menu-icon">
-              <i class="fa-solid fa-chalkboard-user"></i>
-            </span>
-
-            <span class="menu-content">
-              <span class="menu-name"> Especialidades </span>
-
-              <span class="menu-description"> Personal estudiantil </span>
-            </span>
-
-            <i class="fa-solid fa-chevron-down menu-arrow"></i>
-          </button>
-
-          <div class="submenu open">
-            <div class="submenu-inner">
-              <!-- EVOLUCIÓN -->
-
-              <a
-                href="#"
-                class="active"
-                data-page="especialidades"
-                onclick="
-                  cargarPagina('especialidades', this);
-                  return false;
-                "
-              >
-                Especialidades 2026
-              </a>            
-            </div>
-          </div>
-        </div>
-          <!-- =================================================
-       JUBILACION
-  ================================================= -->
-
-        <div class="menu-item">
-          <button class="menu-button open" onclick="toggleMenu(this)">
-            <span class="menu-icon">
-              <i class="fa-solid fa-chalkboard-user"></i>
-            </span>
-
-            <span class="menu-content">
-              <span class="menu-name"> Jubilación </span>
-
-              <span class="menu-description"> jubilacion </span>
-            </span>
-
-            <i class="fa-solid fa-chevron-down menu-arrow"></i>
-          </button>
-
-          <div class="submenu open">
-            <div class="submenu-inner">
-              <!-- EVOLUCIÓN -->
-
-              <a
-                href="#"
-                class="active"
-                data-page="evolucion"
-                onclick="
-                  cargarPagina('jubilacion', this);
-                  return false;
-                "
-              >
-                Jubilación
-              </a>
-
-              <!-- ESPECIALIDAD 35.474 -->
-
-              <a
-                href="#"
-                data-page="especialidad_35474"
-                onclick="
-                  cargarPagina('prejubilacion', this);
-                  return false;
-                "
-              >
-                Prejubilación
-              </a>
-
-              <!-- ESPECIALIDAD 164.448 -->
-
-            
-            </div>
-          </div>
-        </div>
-        <!-- =================================================
-       5. ANÁLISIS DE DEMANDA
-  ================================================= -->
-
-        <div class="menu-item">
-          <button class="menu-button" onclick="toggleMenu(this)">
-            <span class="menu-icon">
-              <i class="fa-solid fa-arrow-trend-up"></i>
-            </span>
-
-            <span class="menu-content">
-              <span class="menu-name"> Análisis de Demanda </span>
-
-              <span class="menu-description"> Necesidades educativas </span>
-            </span>
-
-            <i class="fa-solid fa-chevron-down menu-arrow"></i>
-          </button>
-
-          <div class="submenu">
-            <div class="submenu-inner">
-              <!-- CANTIDAD -->
-
-              <a
-                href="#"
-                data-page="cantidad"
-                onclick="
-                  cargarPagina('cantidad', this);
-                  return false;
-                "
-              >
-                Maestros necesarios por cantidad
-              </a>
-
-              <!-- CARGA HORARIA -->
-
-              <a
-                href="#"
-                data-page="carga_horaria"
-                onclick="
-                  cargarPagina('carga_horaria', this);
-                  return false;
-                "
-              >
-                Maestros necesarios por carga horaria
-              </a>
-            </div>
-          </div>
-        </div>
 
         <!-- =================================================
-       6. CUPOS REQUERIDOS
-  ================================================= -->
+             6. ESPECIALIDADES
+        ================================================= -->
 
         <div class="menu-item">
-          <button class="menu-button" onclick="toggleMenu(this)">
+
+          <button
+            class="menu-button"
+            data-tooltip="Especialidades"
+            onclick="toggleMenu(this)"
+          >
+
             <span class="menu-icon">
               <i class="fa-solid fa-layer-group"></i>
             </span>
 
             <span class="menu-content">
-              <span class="menu-name"> Análisis de Cupos Requeridos </span>
 
-              <span class="menu-description"> Necesidades y proyecciones </span>
+              <span class="menu-name">
+                Especialidades
+              </span>
+
+              <span class="menu-description">
+                Especialidades 2026
+              </span>
+
             </span>
 
             <i class="fa-solid fa-chevron-down menu-arrow"></i>
+
           </button>
 
+
           <div class="submenu">
+
             <div class="submenu-inner">
+
+              <a
+                href="#"
+                data-page="especialidades"
+                onclick="cargarPagina('especialidades', this); return false;"
+              >
+                Especialidades 2026
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             7. JUBILACIÓN
+        ================================================= -->
+
+        <div class="menu-item">
+
+          <button
+            class="menu-button"
+            data-tooltip="Jubilación"
+            onclick="toggleMenu(this)"
+          >
+
+            <span class="menu-icon">
+              <i class="fa-solid fa-person-walking-arrow-right"></i>
+            </span>
+
+            <span class="menu-content">
+
+              <span class="menu-name">
+                Jubilación
+              </span>
+
+              <span class="menu-description">
+                Jubilación y prejubilación
+              </span>
+
+            </span>
+
+            <i class="fa-solid fa-chevron-down menu-arrow"></i>
+
+          </button>
+
+
+          <div class="submenu">
+
+            <div class="submenu-inner">
+
+              <a
+                href="#"
+                data-page="jubilacion"
+                onclick="cargarPagina('jubilacion', this); return false;"
+              >
+                Jubilación
+              </a>
+
+              <a
+                href="#"
+                data-page="prejubilacion"
+                onclick="cargarPagina('prejubilacion', this); return false;"
+              >
+                Prejubilación
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             8. DEMANDA
+        ================================================= -->
+
+        <div class="menu-item">
+
+          <button
+            class="menu-button"
+            data-tooltip="Análisis de Demanda"
+            onclick="toggleMenu(this)"
+          >
+
+            <span class="menu-icon">
+              <i class="fa-solid fa-arrow-trend-up"></i>
+            </span>
+
+            <span class="menu-content">
+
+              <span class="menu-name">
+                Análisis de Demanda
+              </span>
+
+              <span class="menu-description">
+                Necesidades educativas
+              </span>
+
+            </span>
+
+            <i class="fa-solid fa-chevron-down menu-arrow"></i>
+
+          </button>
+
+
+          <div class="submenu">
+
+            <div class="submenu-inner">
+
+              <a
+                href="#"
+                data-page="cantidad"
+                onclick="cargarPagina('cantidad', this); return false;"
+              >
+                Maestros necesarios por cantidad
+              </a>
+
+              <a
+                href="#"
+                data-page="carga_horaria"
+                onclick="cargarPagina('carga_horaria', this); return false;"
+              >
+                Maestros necesarios por carga horaria
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             9. CUPOS
+        ================================================= -->
+
+        <div class="menu-item">
+
+          <button
+            class="menu-button"
+            data-tooltip="Cupos Requeridos"
+            onclick="toggleMenu(this)"
+          >
+
+            <span class="menu-icon">
+              <i class="fa-solid fa-layer-group"></i>
+            </span>
+
+            <span class="menu-content">
+
+              <span class="menu-name">
+                Análisis de Cupos
+              </span>
+
+              <span class="menu-description">
+                Necesidades y proyecciones
+              </span>
+
+            </span>
+
+            <i class="fa-solid fa-chevron-down menu-arrow"></i>
+
+          </button>
+
+
+          <div class="submenu">
+
+            <div class="submenu-inner">
+
               <a
                 href="#"
                 data-page="cupos"
-                onclick="
-                  cargarPagina('cupos', this);
-                  return false;
-                "
+                onclick="cargarPagina('cupos', this); return false;"
               >
                 Cupos requeridos
               </a>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
-      ```
+
     </aside>
 
+
     <!-- =====================================================
-       CONTENIDO POWER BI
-  ===================================================== -->
+         CONTENIDO
+    ===================================================== -->
 
     <main class="content">
-      ```
+
+      <!-- DASHBOARD -->
+
       <div class="powerbi-wrapper">
+
         <iframe
           id="powerbi"
-          title="Gráficos educativos"
+          title="Dashboard Ministerio de Educación - DGFM"
           src="https://app.powerbi.com/reportEmbed?reportId=605e718e-1305-4b4c-9364-9df2f9baee51&autoAuth=true&ctid=77cab36c-76b2-48c3-9c54-cb9e4ee09b72&navContentPaneEnabled=false&pageName=4ff34d3c7d51ed284a12"
           frameborder="0"
           allowfullscreen="true"
-        >
-        </iframe>
+        ></iframe>
+
       </div>
+
+
+      <!-- CONTROLES DASHBOARD -->
+
+      <div class="dashboard-controls">
+
+        <button
+          class="dashboard-control"
+          onclick="recargarDashboard()"
+          title="Actualizar dashboard"
+        >
+          <i class="fa-solid fa-rotate"></i>
+        </button>
+
+        <button
+          class="dashboard-control"
+          onclick="pantallaCompleta()"
+          title="Pantalla completa"
+        >
+          <i class="fa-solid fa-expand"></i>
+        </button>
+
+      </div>
+
 
       <!-- LOADING -->
 
-      <div class="loading" id="loading">
+      <div
+        class="loading"
+        id="loading"
+      >
+
         <div class="spinner"></div>
+
       </div>
-      ```
+
     </main>
 
-    <!-- =====================================================
+  </div>
+
+
+  <!-- =====================================================
        JAVASCRIPT
   ===================================================== -->
 
-    <script>
-      /* =====================================================
+  <script>
+
+    /* =========================================================
        CONFIGURACIÓN POWER BI
+    ========================================================= */
 
-       Todos los IDs de página que me proporcionaste
-       están centralizados aquí.
-    ===================================================== */
+    const POWERBI = {
 
-      const POWERBI = {
-        base: "https://app.powerbi.com/reportEmbed?reportId=605e718e-1305-4b4c-9364-9df2f9baee51&autoAuth=true&ctid=77cab36c-76b2-48c3-9c54-cb9e4ee09b72&navContentPaneEnabled=false",
+      base:
+        "https://app.powerbi.com/reportEmbed?reportId=605e718e-1305-4b4c-9364-9df2f9baee51&autoAuth=true&ctid=77cab36c-76b2-48c3-9c54-cb9e4ee09b72&navContentPaneEnabled=false",
 
-        paginas: {
-          /* ================================================
-           POBLACIÓN DE MAESTROS
-        ================================================ */
+      paginas: {
 
-          evolucion: "4ff34d3c7d51ed284a12",
+        /* POBLACIÓN */
 
-          especialidad_35474: "21ecdd744ad1b36c6ba0",
+        evolucion:
+          "4ff34d3c7d51ed284a12",
 
-          especialidad_164448: "6aa7f3b15867cd2d4732",
+        especialidad_35474:
+          "21ecdd744ad1b36c6ba0",
 
-          total_trabajando_35474: "5e0bcd085c6b30e75829",
+        especialidad_164448:
+          "6aa7f3b15867cd2d4732",
 
-          total_trabajando_164448: "bf1791e85aa669eb6d7e",
-          total_modalidadB3: "7d98fcfb57730e437ec2",
-          total_modalidadB3_est: "e37adad0b70a1ca359a8",
-          total_modalidadB3_esp: "9bb65eaf122bc36c7bea",
-          esfm_35474: "ac9f8db73d13a7d2df84",
+        total_trabajando_35474:
+          "5e0bcd085c6b30e75829",
 
-          ue_164448: "40e0f186a72ef53575c4",
+        total_trabajando_164448:
+          "bf1791e85aa669eb6d7e",
 
-          /* ================================================
-           ANÁLISIS DE PERTINENCIA
-        ================================================ */
+        total_modalidadB3:
+          "7d98fcfb57730e437ec2",
 
-          pertinencia: "e9ae7d786b4061c177d8",
+        total_modalidadB3_est:
+          "e37adad0b70a1ca359a8",
 
-          no_pertinencia: "167a76f5be017daa2044",
+        total_modalidadB3_esp:
+          "9bb65eaf122bc36c7bea",
 
-          estado_pertinencia: "8470e7f015690d8ae29a",
+        total_est_2026:
+          "e08c622c010a4aaa7c30",
 
-          comparativa: "800ba3216d0ff9b64783",
+        esfm_35474:
+          "ac9f8db73d13a7d2df84",
 
-          /* ================================================
-           ANÁLISIS MIGRATORIO
-        ================================================ */
-
-          migratorio_1: "17fe7843c75c313d9bd6",
-
-          migratorio_2_bd: "e561112d1b15684ea6f7",
-
-          migratorio_3: "add53478c4d0b61cb8ea",
-
-          distrital: "48f0afd9ac2dda07a387",
-
-          /* ================================================
-           ESTUDIANTES
-        ================================================ */
-
-          estudiantes: "2bf6085ce047bc10e20d",
-
-          inicial: "d75b21ca4b5b4b41d83c",
-
-          primaria: "dd3554d86e1e7d8d265b",
-
-          secundaria: "5e9d5d10c943fa97fdcd",
-
-          alternativa: "90f81322ad6931c9caff",
-
-          especial: "33984c76a1329bf865be",
-          especialidades: "d706c44907297aaea480",
-
-          
-           jubilacion: "72f9e10a77d374de0793",
-           prejubilacion: "a37ab0ec1718e5196a44",
-           admitidos: "4cf46e58027d0066e6c0",
-           inscritos: "6ca8e5f15aa373b482ad",
-           admitidosi: "984a307696c75dd6c992",
-           total_est_2026 : "e08c622c010a4aaa7c30",
-          
+        ue_164448:
+          "40e0f186a72ef53575c4",
 
 
-          
-           especial: "33984c76a1329bf865be",
-           especial: "33984c76a1329bf865be",
-           especial: "33984c76a1329bf865be",
-          
+        /* PERTINENCIA */
 
-          /* ================================================
-           ANÁLISIS DE DEMANDA
-        ================================================ */
+        pertinencia:
+          "e9ae7d786b4061c177d8",
 
-          cantidad: "77f4b8b22b8a0123a98a",
+        no_pertinencia:
+          "167a76f5be017daa2044",
 
-          carga_horaria: "60ae5b6edd7a9f45e646",
+        estado_pertinencia:
+          "8470e7f015690d8ae29a",
 
-          /* ================================================
-           CUPOS
-        ================================================ */
+        comparativa:
+          "800ba3216d0ff9b64783",
 
-          cupos: "73c4cbf03d2801fcc81d",
-        },
-      };
 
-      /* =====================================================
-       CARGAR PÁGINA DE POWER BI
-    ===================================================== */
+        /* MIGRATORIO */
 
-      function cargarPagina(nombre, elemento) {
-        const iframe = document.getElementById("powerbi");
+        migratorio_1:
+          "17fe7843c75c313d9bd6",
 
-        const loading = document.getElementById("loading");
+        migratorio_2_bd:
+          "e561112d1b15684ea6f7",
 
-        const pageName = POWERBI.paginas[nombre];
+        migratorio_3:
+          "add53478c4d0b61cb8ea",
 
-        /* -----------------------------------------------
-         COMPROBAR QUE EXISTE EL PAGE NAME
-      ----------------------------------------------- */
+        distrital:
+          "48f0afd9ac2dda07a387",
 
-        if (!pageName) {
-          alert("No se encontró la página de Power BI: " + nombre);
 
-          return;
-        }
+        /* ESTUDIANTES */
 
-        /* -----------------------------------------------
-         MOSTRAR LOADING
-      ----------------------------------------------- */
+        estudiantes:
+          "2bf6085ce047bc10e20d",
 
-        loading.classList.add("show");
+        inicial:
+          "d75b21ca4b5b4b41d83c",
 
-        /* -----------------------------------------------
-         CONSTRUIR URL
-      ----------------------------------------------- */
+        primaria:
+          "dd3554d86e1e7d8d265b",
 
-        const nuevaURL =
-          POWERBI.base + "&pageName=" + encodeURIComponent(pageName);
+        secundaria:
+          "5e9d5d10c943fa97fdcd",
 
-        /* -----------------------------------------------
-         CAMBIAR POWER BI
-      ----------------------------------------------- */
+        alternativa:
+          "90f81322ad6931c9caff",
 
-        iframe.src = nuevaURL;
+        especial:
+          "33984c76a1329bf865be",
 
-        /* -----------------------------------------------
-         QUITAR SELECCIÓN ANTERIOR
-      ----------------------------------------------- */
+        especialidades:
+          "d706c44907297aaea480",
 
-        document.querySelectorAll(".submenu a").forEach((a) => {
+
+        /* JUBILACIÓN */
+
+        jubilacion:
+          "72f9e10a77d374de0793",
+
+        prejubilacion:
+          "a37ab0ec1718e5196a44",
+
+
+        /* ADMITIDOS */
+
+        admitidos:
+          "4cf46e58027d0066e6c0",
+
+        inscritos:
+          "6ca8e5f15aa373b482ad",
+
+        admitidosi:
+          "984a307696c75dd6c992",
+
+
+        /* DEMANDA */
+
+        cantidad:
+          "77f4b8b22b8a0123a98a",
+
+        carga_horaria:
+          "60ae5b6edd7a9f45e646",
+
+
+        /* CUPOS */
+
+        cupos:
+          "73c4cbf03d2801fcc81d"
+
+      }
+
+    };
+
+
+    /* =========================================================
+       ELEMENTOS
+    ========================================================= */
+
+    const sidebar =
+      document.getElementById("sidebar");
+
+    const iframe =
+      document.getElementById("powerbi");
+
+    const loading =
+      document.getElementById("loading");
+
+
+    /* =========================================================
+       CARGAR PÁGINA POWER BI
+    ========================================================= */
+
+    function cargarPagina(
+      nombre,
+      elemento
+    ) {
+
+      const pageName =
+        POWERBI.paginas[nombre];
+
+
+      if (!pageName) {
+
+        alert(
+          "No se encontró la página de Power BI: " +
+          nombre
+        );
+
+        return;
+
+      }
+
+
+      /* LOADING */
+
+      loading.classList.add("show");
+
+
+      /* URL */
+
+      const nuevaURL =
+        POWERBI.base +
+        "&pageName=" +
+        encodeURIComponent(pageName);
+
+
+      /* CAMBIAR IFRAMe */
+
+      iframe.src = nuevaURL;
+
+
+      /* QUITAR ACTIVOS */
+
+      document
+        .querySelectorAll(".submenu a")
+        .forEach((a) => {
+
           a.classList.remove("active");
+
         });
 
-        /* -----------------------------------------------
-         SELECCIONAR ELEMENTO ACTUAL
-      ----------------------------------------------- */
 
-        if (elemento) {
-          elemento.classList.add("active");
-        }
+      /* ACTIVAR ACTUAL */
 
-        /* -----------------------------------------------
-         CERRAR MENÚ MOBILE
-      ----------------------------------------------- */
+      if (elemento) {
 
-        if (window.innerWidth <= 768) {
-          cerrarMenuMobile();
-        }
+        elemento.classList.add("active");
 
-        /* -----------------------------------------------
-         LOADING
-      ----------------------------------------------- */
-
-        iframe.onload = function () {
-          setTimeout(() => {
-            loading.classList.remove("show");
-          }, 700);
-        };
       }
 
-      /* =====================================================
-       ABRIR / CERRAR SUBMENÚ
-    ===================================================== */
 
-      function toggleMenu(button) {
-        const submenu = button.nextElementSibling;
+      /* MOBILE */
 
-        const abierto = button.classList.contains("open");
+      if (
+        window.innerWidth <= 768
+      ) {
 
-        /* -----------------------------------------------
-         CERRAR TODOS LOS MENÚS
-      ----------------------------------------------- */
+        cerrarMenuMobile();
 
-        document.querySelectorAll(".menu-button").forEach((btn) => {
+      }
+
+    }
+
+
+    /* =========================================================
+       TOGGLE MENÚ
+    ========================================================= */
+
+    function toggleMenu(button) {
+
+      const submenu =
+        button.nextElementSibling;
+
+      const estabaAbierto =
+        button.classList.contains("open");
+
+
+      /* CERRAR TODOS */
+
+      document
+        .querySelectorAll(".menu-button")
+        .forEach((btn) => {
+
           btn.classList.remove("open");
+
         });
 
-        document.querySelectorAll(".submenu").forEach((menu) => {
+
+      document
+        .querySelectorAll(".submenu")
+        .forEach((menu) => {
+
           menu.classList.remove("open");
+
         });
 
-        /* -----------------------------------------------
-         ABRIR EL SELECCIONADO
-      ----------------------------------------------- */
 
-        if (!abierto) {
-          button.classList.add("open");
+      /* ABRIR SELECCIONADO */
 
-          submenu.classList.add("open");
-        }
+      if (!estabaAbierto) {
+
+        button.classList.add("open");
+
+        submenu.classList.add("open");
+
       }
 
-      /* =====================================================
-       MENÚ MOBILE
-    ===================================================== */
+    }
 
-      function abrirMenuMobile() {
-        document.querySelector(".sidebar").classList.add("mobile-open");
 
-        document.getElementById("sidebarOverlay").classList.add("show");
+    /* =========================================================
+       CONTRAER SIDEBAR
+    ========================================================= */
 
-        document.body.style.overflow = "hidden";
+    function toggleSidebar() {
+
+      if (
+        window.innerWidth <= 768
+      ) {
+
+        return;
+
       }
 
-      function cerrarMenuMobile() {
-        document.querySelector(".sidebar").classList.remove("mobile-open");
+      sidebar.classList.toggle("collapsed");
 
-        document.getElementById("sidebarOverlay").classList.remove("show");
+    }
 
-        document.body.style.overflow = "";
-      }
 
-      /* =====================================================
-       RESPONSIVE
-    ===================================================== */
+    /* =========================================================
+       MOBILE
+    ========================================================= */
 
-      window.addEventListener("resize", () => {
-        if (window.innerWidth > 768) {
-          cerrarMenuMobile();
-        }
-      });
+    function abrirMenuMobile() {
 
-      /* =====================================================
+      sidebar.classList.add(
+        "mobile-open"
+      );
+
+      document
+        .getElementById(
+          "sidebarOverlay"
+        )
+        .classList.add("show");
+
+      document.body.style.overflow =
+        "hidden";
+
+    }
+
+
+    function cerrarMenuMobile() {
+
+      sidebar.classList.remove(
+        "mobile-open"
+      );
+
+      document
+        .getElementById(
+          "sidebarOverlay"
+        )
+        .classList.remove("show");
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+    /* =========================================================
        BUSCADOR
-    ===================================================== */
+    ========================================================= */
 
-      function buscar() {
-        const texto = document
+    function buscar() {
+
+      const texto =
+        document
           .getElementById("search")
-          .value.toLowerCase()
+          .value
+          .toLowerCase()
           .trim();
 
-        document.querySelectorAll(".menu-item").forEach((item) => {
-          const contenido = item.textContent.toLowerCase();
 
-          if (texto === "" || contenido.includes(texto)) {
-            item.style.display = "block";
+      document
+        .querySelectorAll(".menu-item")
+        .forEach((item) => {
+
+          const contenido =
+            item.textContent
+              .toLowerCase();
+
+
+          if (
+            texto === "" ||
+            contenido.includes(texto)
+          ) {
+
+            item.style.display =
+              "block";
+
           } else {
-            item.style.display = "none";
+
+            item.style.display =
+              "none";
+
           }
+
         });
+
+    }
+
+
+    /* =========================================================
+       RECARGAR DASHBOARD
+    ========================================================= */
+
+    function recargarDashboard() {
+
+      loading.classList.add("show");
+
+      const actual =
+        iframe.src;
+
+      iframe.src = actual;
+
+    }
+
+
+    /* =========================================================
+       PANTALLA COMPLETA
+    ========================================================= */
+
+    function pantallaCompleta() {
+
+      const elemento =
+        document.querySelector(
+          ".powerbi-wrapper"
+        );
+
+
+      if (
+        !document.fullscreenElement
+      ) {
+
+        if (
+          elemento.requestFullscreen
+        ) {
+
+          elemento.requestFullscreen();
+
+        } else if (
+          elemento.webkitRequestFullscreen
+        ) {
+
+          elemento.webkitRequestFullscreen();
+
+        }
+
+      } else {
+
+        document.exitFullscreen();
+
       }
 
-      /* =====================================================
-       LOADING INICIAL
-    ===================================================== */
+    }
 
-      window.addEventListener("load", () => {
-        const iframe = document.getElementById("powerbi");
 
-        const loading = document.getElementById("loading");
+    /* =========================================================
+       LOADING POWER BI
+    ========================================================= */
 
-        iframe.onload = function () {
-          setTimeout(() => {
-            loading.classList.remove("show");
-          }, 700);
-        };
-      });
-    </script>
-  </body>
+    iframe.addEventListener(
+      "load",
+      function () {
+
+        setTimeout(
+          function () {
+
+            loading.classList.remove(
+              "show"
+            );
+
+          },
+          500
+        );
+
+      }
+    );
+
+
+    /* =========================================================
+       ESC PARA CERRAR MOBILE
+    ========================================================= */
+
+    document.addEventListener(
+      "keydown",
+      function (event) {
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          if (
+            window.innerWidth <= 768
+          ) {
+
+            cerrarMenuMobile();
+
+          }
+
+        }
+
+      }
+    );
+
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    window.addEventListener(
+      "resize",
+      function () {
+
+        if (
+          window.innerWidth > 768
+        ) {
+
+          cerrarMenuMobile();
+
+        }
+
+      }
+    );
+
+
+    /* =========================================================
+       INICIO
+    ========================================================= */
+
+    window.addEventListener(
+      "load",
+      function () {
+
+        setTimeout(
+          function () {
+
+            loading.classList.remove(
+              "show"
+            );
+
+          },
+          800
+        );
+
+      }
+    );
+
+  </script>
+
+</body>
 </html>
