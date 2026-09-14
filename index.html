@@ -826,7 +826,7 @@
       <div class="menu">
         <div class="section-label">Módulos de información</div>
 
-        <!-- =================================================
+  <!-- =================================================
        1. POBLACIÓN DE MAESTROS
   ================================================= -->
 
@@ -933,7 +933,8 @@
                 Estudiantes con modalidad B3 General
                               
               </a>
-                                          <a
+              
+              <a
                 href="#"
                 data-page="total_modalidadB3_est"
                 onclick="
@@ -942,6 +943,17 @@
                 "
               >
                 Estudiantes con modalidad B3 Específico (por año)
+                              
+              </a>
+              <a
+                href="#"
+                data-page="total_est_2026"
+                onclick="
+                  cargarPagina('total_est_2026', this);
+                  return false;
+                "
+              >
+                Estudiantes ESFM 2026
                               
               </a>
               <!-- ESFM 35.474 -->
@@ -1281,6 +1293,46 @@
             </div>
           </div>
         </div>
+
+
+
+         <!-- =================================================
+       ESPECIALIDADES
+  ================================================= -->
+
+        <div class="menu-item">
+          <button class="menu-button open" onclick="toggleMenu(this)">
+            <span class="menu-icon">
+              <i class="fa-solid fa-chalkboard-user"></i>
+            </span>
+
+            <span class="menu-content">
+              <span class="menu-name"> Especialidades </span>
+
+              <span class="menu-description"> Personal estudiantil </span>
+            </span>
+
+            <i class="fa-solid fa-chevron-down menu-arrow"></i>
+          </button>
+
+          <div class="submenu open">
+            <div class="submenu-inner">
+              <!-- EVOLUCIÓN -->
+
+              <a
+                href="#"
+                class="active"
+                data-page="especialidades"
+                onclick="
+                  cargarPagina('especialidades', this);
+                  return false;
+                "
+              >
+                Especialidades 2026
+              </a>            
+            </div>
+          </div>
+        </div>
           <!-- =================================================
        JUBILACION
   ================================================= -->
@@ -1523,15 +1575,16 @@
           alternativa: "90f81322ad6931c9caff",
 
           especial: "33984c76a1329bf865be",
-
+          especialidades: "d706c44907297aaea480",
 
           
            jubilacion: "72f9e10a77d374de0793",
            prejubilacion: "a37ab0ec1718e5196a44",
            admitidos: "4cf46e58027d0066e6c0",
            inscritos: "6ca8e5f15aa373b482ad",
-          admitidosi: "984a307696c75dd6c992",
-
+           admitidosi: "984a307696c75dd6c992",
+           total_est_2026 : "e08c622c010a4aaa7c30",
+          
 
 
           
