@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+
+  <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  />
+  >
 
   <title>Ministerio de Educación - DGFM</title>
 
@@ -13,9 +15,10 @@
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  />
+  >
 
   <style>
+
     /* =========================================================
        RESET
     ========================================================= */
@@ -42,14 +45,15 @@
         sans-serif;
 
       background: #eef2f7;
-      color: #172033;
     }
+
 
     /* =========================================================
        VARIABLES
     ========================================================= */
 
     :root {
+
       --sidebar-width: 310px;
       --sidebar-collapsed: 78px;
 
@@ -66,28 +70,37 @@
 
       --background: #eef2f7;
 
-      --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition:
+        0.28s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
 
     /* =========================================================
        APP
     ========================================================= */
 
     .app {
+
       width: 100%;
       height: 100vh;
+
       display: flex;
+
       overflow: hidden;
+
       position: relative;
     }
+
 
     /* =========================================================
        SIDEBAR
     ========================================================= */
 
     .sidebar {
+
       width: var(--sidebar-width);
       min-width: var(--sidebar-width);
+
       height: 100vh;
 
       position: relative;
@@ -107,7 +120,8 @@
           var(--sidebar-bg-2)
         );
 
-      box-shadow: 8px 0 35px rgba(15, 23, 42, 0.15);
+      box-shadow:
+        8px 0 35px rgba(15, 23, 42, 0.15);
 
       z-index: 100;
 
@@ -119,38 +133,57 @@
       overflow: hidden;
     }
 
+
     /* =========================================================
        SIDEBAR CONTRAÍDO
     ========================================================= */
 
     .sidebar.collapsed {
+
       width: var(--sidebar-collapsed);
+
       min-width: var(--sidebar-collapsed);
     }
+
 
     /* =========================================================
        HEADER
     ========================================================= */
 
     .header {
+
       position: relative;
-      padding: 20px 16px 14px;
+
+      padding:
+        20px
+        16px
+        14px;
+
       flex-shrink: 0;
     }
 
+
     .brand {
+
       display: flex;
+
       align-items: center;
+
       gap: 12px;
+
       min-width: 0;
     }
 
+
     .brand-icon {
+
       width: 46px;
       height: 46px;
+
       min-width: 46px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -166,40 +199,57 @@
       color: white;
 
       box-shadow:
-        0 8px 22px rgba(99, 102, 241, 0.32);
+        0 8px 22px
+        rgba(99, 102, 241, 0.32);
     }
+
 
     .brand-icon i {
       font-size: 19px;
     }
 
+
     .brand-text {
       min-width: 0;
+
       transition:
         opacity var(--transition),
         width var(--transition);
     }
 
+
     .brand-title {
+
       color: white;
+
       font-size: 14px;
+
       line-height: 1.25;
+
       font-weight: 750;
+
       white-space: nowrap;
     }
+
 
     .brand-subtitle {
+
       margin-top: 4px;
+
       color: #73859b;
+
       font-size: 8px;
+
       white-space: nowrap;
     }
 
+
     /* =========================================================
-       BOTÓN COLAPSAR
+       BOTÓN CONTRAER
     ========================================================= */
 
     .collapse-button {
+
       position: absolute;
 
       right: 12px;
@@ -208,14 +258,19 @@
       width: 30px;
       height: 30px;
 
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.07);
+
       border-radius: 9px;
 
-      background: rgba(255, 255, 255, 0.045);
+      background:
+        rgba(255, 255, 255, 0.045);
 
       color: #8ea0b5;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -226,31 +281,47 @@
       z-index: 5;
     }
 
+
     .collapse-button:hover {
+
       color: white;
-      background: rgba(255, 255, 255, 0.1);
+
+      background:
+        rgba(255, 255, 255, 0.1);
     }
+
 
     .collapse-button i {
-      transition: transform var(--transition);
+
+      transition:
+        transform var(--transition);
     }
 
-    .sidebar.collapsed .collapse-button i {
-      transform: rotate(180deg);
+
+    .sidebar.collapsed
+    .collapse-button i {
+
+      transform:
+        rotate(180deg);
     }
+
 
     /* =========================================================
-       SEARCH
+       BUSCADOR
     ========================================================= */
 
     .search-wrapper {
+
       margin-top: 18px;
     }
 
+
     .search {
+
       height: 40px;
 
       display: flex;
+
       align-items: center;
 
       gap: 9px;
@@ -259,27 +330,41 @@
 
       border-radius: 11px;
 
-      background: rgba(255, 255, 255, 0.045);
+      background:
+        rgba(255, 255, 255, 0.045);
 
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.06);
 
       transition: 0.25s ease;
     }
 
+
     .search:focus-within {
-      border-color: rgba(129, 140, 248, 0.45);
-      background: rgba(255, 255, 255, 0.065);
+
+      border-color:
+        rgba(129, 140, 248, 0.45);
+
+      background:
+        rgba(255, 255, 255, 0.065);
     }
 
+
     .search i {
+
       color: #60738a;
+
       font-size: 11px;
     }
 
+
     .search input {
+
       width: 100%;
 
       border: none;
+
       outline: none;
 
       background: transparent;
@@ -289,36 +374,54 @@
       font-size: 10px;
     }
 
+
     .search input::placeholder {
       color: #60738a;
     }
 
+
     /* =========================================================
-       MENÚ
+       MENU
     ========================================================= */
 
     .menu {
+
       flex: 1;
 
       overflow-y: auto;
 
-      padding: 3px 10px 25px;
+      padding:
+        3px
+        10px
+        25px;
 
       scrollbar-width: thin;
-      scrollbar-color: #26374d transparent;
+
+      scrollbar-color:
+        #26374d
+        transparent;
     }
+
 
     .menu::-webkit-scrollbar {
       width: 4px;
     }
 
+
     .menu::-webkit-scrollbar-thumb {
+
       background: #26374d;
+
       border-radius: 20px;
     }
 
+
     .section-label {
-      padding: 13px 10px 9px;
+
+      padding:
+        13px
+        10px
+        9px;
 
       color: #50637a;
 
@@ -333,6 +436,7 @@
       white-space: nowrap;
     }
 
+
     /* =========================================================
        MENU ITEM
     ========================================================= */
@@ -341,19 +445,25 @@
       margin-bottom: 4px;
     }
 
+
     .menu-button {
+
       width: 100%;
 
       min-height: 53px;
 
-      padding: 7px 9px;
+      padding:
+        7px
+        9px;
 
       border: none;
+
       border-radius: 13px;
 
       background: transparent;
 
       display: flex;
+
       align-items: center;
 
       cursor: pointer;
@@ -365,12 +475,19 @@
       position: relative;
     }
 
+
     .menu-button:hover {
-      background: rgba(255, 255, 255, 0.05);
-      transform: translateX(1px);
+
+      background:
+        rgba(255, 255, 255, 0.05);
+
+      transform:
+        translateX(1px);
     }
 
+
     .menu-button.open {
+
       background:
         linear-gradient(
           90deg,
@@ -379,17 +496,20 @@
         );
     }
 
+
     /* =========================================================
-       ICON
+       ICONOS
     ========================================================= */
 
     .menu-icon {
+
       width: 38px;
       height: 38px;
 
       min-width: 38px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -397,18 +517,23 @@
 
       border-radius: 11px;
 
-      background: rgba(255, 255, 255, 0.055);
+      background:
+        rgba(255, 255, 255, 0.055);
 
       color: #8799af;
 
       transition: 0.23s ease;
     }
 
+
     .menu-icon i {
       font-size: 14px;
     }
 
-    .menu-button.open .menu-icon {
+
+    .menu-button.open
+    .menu-icon {
+
       color: white;
 
       background:
@@ -419,15 +544,19 @@
         );
 
       box-shadow:
-        0 6px 17px rgba(99, 102, 241, 0.28);
+        0 6px 17px
+        rgba(99, 102, 241, 0.28);
     }
 
+
     /* =========================================================
-       TEXT MENU
+       TEXTO
     ========================================================= */
 
     .menu-content {
+
       flex: 1;
+
       min-width: 0;
 
       text-align: left;
@@ -437,7 +566,9 @@
         width var(--transition);
     }
 
+
     .menu-name {
+
       display: block;
 
       color: #dce5ef;
@@ -447,11 +578,15 @@
       font-weight: 650;
 
       white-space: nowrap;
+
       overflow: hidden;
+
       text-overflow: ellipsis;
     }
 
+
     .menu-description {
+
       display: block;
 
       margin-top: 3px;
@@ -461,15 +596,19 @@
       font-size: 8px;
 
       white-space: nowrap;
+
       overflow: hidden;
+
       text-overflow: ellipsis;
     }
 
+
     /* =========================================================
-       ARROW
+       FLECHA
     ========================================================= */
 
     .menu-arrow {
+
       margin-left: 7px;
 
       color: #566a81;
@@ -479,16 +618,23 @@
       transition: 0.3s ease;
     }
 
-    .menu-button.open .menu-arrow {
+
+    .menu-button.open
+    .menu-arrow {
+
       color: #a5adff;
-      transform: rotate(180deg);
+
+      transform:
+        rotate(180deg);
     }
+
 
     /* =========================================================
        SUBMENU
     ========================================================= */
 
     .submenu {
+
       max-height: 0;
 
       opacity: 0;
@@ -500,12 +646,17 @@
         opacity 0.25s ease;
     }
 
+
     .submenu.open {
+
       max-height: 1000px;
+
       opacity: 1;
     }
 
+
     .submenu-inner {
+
       padding:
         3px
         7px
@@ -513,12 +664,17 @@
         57px;
     }
 
+
     .submenu a {
+
       min-height: 35px;
 
-      padding: 6px 9px;
+      padding:
+        6px
+        9px;
 
       display: flex;
+
       align-items: center;
 
       border-radius: 8px;
@@ -532,7 +688,9 @@
       transition: 0.2s ease;
     }
 
+
     .submenu a::before {
+
       content: "";
 
       width: 4px;
@@ -549,104 +707,148 @@
       transition: 0.2s ease;
     }
 
+
     .submenu a:hover {
+
       color: white;
-      background: rgba(255, 255, 255, 0.045);
-      transform: translateX(2px);
+
+      background:
+        rgba(255, 255, 255, 0.045);
+
+      transform:
+        translateX(2px);
     }
+
 
     .submenu a.active {
+
       color: white;
-      background: rgba(99, 102, 241, 0.14);
+
+      background:
+        rgba(99, 102, 241, 0.14);
     }
 
+
     .submenu a.active::before {
+
       background: #818cf8;
 
       box-shadow:
-        0 0 8px rgba(129, 140, 248, 0.9);
+        0 0 8px
+        rgba(129, 140, 248, 0.9);
     }
 
+
     /* =========================================================
-       SIDEBAR CONTRAÍDO
+       SIDEBAR COLLAPSED
     ========================================================= */
 
-    .sidebar.collapsed .brand-text,
-    .sidebar.collapsed .search-wrapper,
-    .sidebar.collapsed .section-label,
-    .sidebar.collapsed .menu-content,
-    .sidebar.collapsed .menu-arrow {
+    .sidebar.collapsed
+    .brand-text,
+
+    .sidebar.collapsed
+    .search-wrapper,
+
+    .sidebar.collapsed
+    .section-label,
+
+    .sidebar.collapsed
+    .menu-content,
+
+    .sidebar.collapsed
+    .menu-arrow {
+
       opacity: 0;
+
       width: 0;
+
       overflow: hidden;
+
       pointer-events: none;
     }
 
-    .sidebar.collapsed .header {
-      padding-left: 16px;
-      padding-right: 16px;
-    }
 
-    .sidebar.collapsed .brand {
+    .sidebar.collapsed
+    .brand {
+
       justify-content: center;
     }
 
-    .sidebar.collapsed .collapse-button {
+
+    .sidebar.collapsed
+    .collapse-button {
+
       right: 50%;
-      transform: translateX(50%);
+
+      transform:
+        translateX(50%);
+
       top: 76px;
     }
 
-    .sidebar.collapsed .collapse-button i {
-      transform: rotate(180deg);
-    }
 
-    .sidebar.collapsed .menu {
-      padding-left: 10px;
-      padding-right: 10px;
+    .sidebar.collapsed
+    .menu {
+
       padding-top: 45px;
     }
 
-    .sidebar.collapsed .menu-button {
+
+    .sidebar.collapsed
+    .menu-button {
+
       justify-content: center;
+
       padding: 7px;
     }
 
-    .sidebar.collapsed .menu-icon {
+
+    .sidebar.collapsed
+    .menu-icon {
+
       margin-right: 0;
     }
 
-    .sidebar.collapsed .submenu {
+
+    .sidebar.collapsed
+    .submenu {
+
       display: none;
     }
 
+
     /* =========================================================
-       TOOLTIP DEL MENÚ CONTRAÍDO
+       TOOLTIP
     ========================================================= */
 
-    .sidebar.collapsed .menu-button {
-      position: relative;
-    }
+    .sidebar.collapsed
+    .menu-button::after {
 
-    .sidebar.collapsed .menu-button::after {
-      content: attr(data-tooltip);
+      content:
+        attr(data-tooltip);
 
       position: absolute;
 
-      left: calc(100% + 12px);
+      left:
+        calc(100% + 12px);
+
       top: 50%;
 
       transform:
         translateY(-50%)
         translateX(-5px);
 
-      padding: 8px 11px;
+      padding:
+        8px
+        11px;
 
       background: #111d2e;
 
       color: white;
 
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
 
       border-radius: 8px;
 
@@ -655,20 +857,26 @@
       white-space: nowrap;
 
       opacity: 0;
+
       visibility: hidden;
 
       pointer-events: none;
 
       box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.25);
+        0 8px 25px
+        rgba(0, 0, 0, 0.25);
 
       transition: 0.2s ease;
 
       z-index: 9999;
     }
 
-    .sidebar.collapsed .menu-button:hover::after {
+
+    .sidebar.collapsed
+    .menu-button:hover::after {
+
       opacity: 1;
+
       visibility: visible;
 
       transform:
@@ -676,11 +884,13 @@
         translateX(0);
     }
 
+
     /* =========================================================
-       CONTENIDO
+       CONTENT
     ========================================================= */
 
     .content {
+
       flex: 1;
 
       min-width: 0;
@@ -693,24 +903,27 @@
 
       overflow: hidden;
 
-      transition: width var(--transition);
+      transition:
+        width var(--transition);
     }
 
+
     /* =========================================================
-       DASHBOARD
+       POWER BI
     ========================================================= */
 
     .powerbi-wrapper {
+
       position: absolute;
 
       inset: 0;
 
-      padding: 7px;
-
-      transition: padding 0.25s ease;
+      padding: 6px;
     }
 
+
     #powerbi {
+
       width: 100%;
       height: 100%;
 
@@ -723,65 +936,118 @@
       background: white;
 
       box-shadow:
-        0 4px 25px rgba(15, 23, 42, 0.09);
+        0 4px 25px
+        rgba(15, 23, 42, 0.09);
     }
 
+
     /* =========================================================
-       BARRA FLOTANTE DEL DASHBOARD
+       CONTROLES DASHBOARD
     ========================================================= */
 
     .dashboard-controls {
+
       position: absolute;
 
-      top: 17px;
-      right: 17px;
+      top: 15px;
+
+      right: 15px;
 
       display: flex;
+
       gap: 6px;
 
       z-index: 20;
     }
 
+
     .dashboard-control {
+
       width: 34px;
       height: 34px;
 
-      border: 1px solid rgba(15, 23, 42, 0.07);
+      border:
+        1px solid
+        rgba(15, 23, 42, 0.07);
 
       border-radius: 9px;
 
-      background: rgba(255, 255, 255, 0.92);
+      background:
+        rgba(255, 255, 255, 0.92);
 
-      backdrop-filter: blur(10px);
+      backdrop-filter:
+        blur(10px);
 
       color: #536176;
 
       cursor: pointer;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
       box-shadow:
-        0 4px 14px rgba(15, 23, 42, 0.1);
+        0 4px 14px
+        rgba(15, 23, 42, 0.1);
 
       transition: 0.2s ease;
     }
 
+
     .dashboard-control:hover {
+
       color: #4f46e5;
 
-      transform: translateY(-1px);
+      transform:
+        translateY(-1px);
+    }
+
+
+    /* =========================================================
+       BOTÓN MENÚ MÓVIL
+    ========================================================= */
+
+    .mobile-menu-floating {
+
+      display: none;
+
+      position: fixed;
+
+      z-index: 500;
+
+      width: 42px;
+      height: 42px;
+
+      left: 10px;
+      top: 10px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      background:
+        rgba(7, 17, 31, 0.88);
+
+      backdrop-filter:
+        blur(8px);
+
+      color: white;
 
       box-shadow:
-        0 7px 18px rgba(15, 23, 42, 0.14);
+        0 5px 20px
+        rgba(0, 0, 0, 0.22);
+
+      cursor: pointer;
     }
+
 
     /* =========================================================
        LOADING
     ========================================================= */
 
     .loading {
+
       position: absolute;
 
       inset: 0;
@@ -795,88 +1061,70 @@
 
       opacity: 0;
 
-      background: rgba(238, 242, 247, 0.5);
+      background:
+        rgba(238, 242, 247, 0.5);
 
-      backdrop-filter: blur(2px);
+      backdrop-filter:
+        blur(2px);
 
       transition: 0.2s ease;
 
       z-index: 50;
     }
 
+
     .loading.show {
       opacity: 1;
     }
 
+
     .spinner {
+
       width: 42px;
       height: 42px;
 
       border-radius: 50%;
 
-      border: 3px solid #dce2eb;
+      border:
+        3px solid
+        #dce2eb;
 
-      border-top-color: #6366f1;
+      border-top-color:
+        #6366f1;
 
       animation:
-        girar 0.75s linear infinite;
+        girar
+        0.75s
+        linear
+        infinite;
     }
+
 
     @keyframes girar {
+
       to {
-        transform: rotate(360deg);
+        transform:
+          rotate(360deg);
       }
+
     }
 
-    /* =========================================================
-       MOBILE TOPBAR
-    ========================================================= */
-
-    .mobile-topbar {
-      display: none;
-    }
-
-    .mobile-menu-button {
-      width: 38px;
-      height: 38px;
-
-      border: none;
-
-      border-radius: 10px;
-
-      background: rgba(255, 255, 255, 0.08);
-
-      color: white;
-
-      cursor: pointer;
-    }
-
-    .mobile-title {
-      color: white;
-
-      font-size: 12px;
-
-      font-weight: 700;
-
-      white-space: nowrap;
-
-      overflow: hidden;
-
-      text-overflow: ellipsis;
-    }
 
     /* =========================================================
        OVERLAY MOBILE
     ========================================================= */
 
     .sidebar-overlay {
+
       position: fixed;
 
       inset: 0;
 
-      background: rgba(7, 17, 31, 0.55);
+      background:
+        rgba(7, 17, 31, 0.55);
 
-      backdrop-filter: blur(2px);
+      backdrop-filter:
+        blur(2px);
 
       opacity: 0;
 
@@ -886,10 +1134,12 @@
 
       transition: 0.25s ease;
 
-      z-index: 90;
+      z-index: 150;
     }
 
+
     .sidebar-overlay.show {
+
       opacity: 1;
 
       visibility: visible;
@@ -897,103 +1147,191 @@
       pointer-events: auto;
     }
 
+
     /* =========================================================
-       TABLET
+       PANTALLA ROTACIÓN
     ========================================================= */
 
-    @media (max-width: 1100px) {
-      :root {
-        --sidebar-width: 275px;
-      }
+    .rotate-screen {
 
-      .brand-title {
-        font-size: 13px;
-      }
+      display: none;
 
-      .menu-name {
-        font-size: 10px;
-      }
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 10000;
+
+      background:
+        linear-gradient(
+          145deg,
+          #07111f,
+          #101d31
+        );
+
+      color: white;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 30px;
     }
 
+
+    .rotate-content {
+
+      max-width: 330px;
+    }
+
+
+    .rotate-icon {
+
+      width: 90px;
+      height: 90px;
+
+      margin:
+        0 auto
+        25px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 25px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #6366f1,
+          #7c3aed
+        );
+
+      box-shadow:
+        0 15px 40px
+        rgba(99, 102, 241, 0.35);
+
+      animation:
+        rotarTelefono
+        2s
+        ease-in-out
+        infinite;
+    }
+
+
+    .rotate-icon i {
+
+      font-size: 42px;
+    }
+
+
+    .rotate-title {
+
+      font-size: 22px;
+
+      font-weight: 750;
+
+      margin-bottom: 10px;
+    }
+
+
+    .rotate-text {
+
+      color: #aab7c8;
+
+      font-size: 13px;
+
+      line-height: 1.6;
+    }
+
+
+    @keyframes rotarTelefono {
+
+      0% {
+        transform:
+          rotate(0deg);
+      }
+
+      35% {
+        transform:
+          rotate(90deg);
+      }
+
+      65% {
+        transform:
+          rotate(90deg);
+      }
+
+      100% {
+        transform:
+          rotate(0deg);
+      }
+
+    }
+
+
     /* =========================================================
-       MOBILE
+       TABLET / MOBILE
     ========================================================= */
 
     @media (max-width: 768px) {
-      html,
-      body {
-        width: 100%;
-        height: 100dvh;
-      }
-
-      .app {
-        height: 100dvh;
-      }
-
-      /* TOPBAR */
-
-      .mobile-topbar {
-        position: fixed;
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 10px;
-
-        top: 0;
-        left: 0;
-        right: 0;
-
-        height: 54px;
-
-        padding: 7px 10px;
-
-        background:
-          linear-gradient(
-            145deg,
-            var(--sidebar-bg),
-            var(--sidebar-bg-2)
-          );
-
-        box-shadow:
-          0 4px 20px rgba(15, 23, 42, 0.22);
-
-        z-index: 80;
-      }
-
-      /* SIDEBAR */
 
       .sidebar {
+
         position: fixed;
 
         top: 0;
         left: 0;
 
         width: min(88vw, 320px);
-        min-width: min(88vw, 320px);
+
+        min-width:
+          min(88vw, 320px);
 
         height: 100dvh;
 
-        transform: translateX(-105%);
+        transform:
+          translateX(-105%);
 
-        z-index: 200;
+        z-index: 300;
       }
+
 
       .sidebar.mobile-open {
-        transform: translateX(0);
+
+        transform:
+          translateX(0);
       }
+
 
       .sidebar.collapsed {
-        width: min(88vw, 320px);
-        min-width: min(88vw, 320px);
+
+        width:
+          min(88vw, 320px);
+
+        min-width:
+          min(88vw, 320px);
       }
 
-      .sidebar.collapsed .brand-text,
-      .sidebar.collapsed .search-wrapper,
-      .sidebar.collapsed .section-label,
-      .sidebar.collapsed .menu-content,
-      .sidebar.collapsed .menu-arrow {
+
+      .sidebar.collapsed
+      .brand-text,
+
+      .sidebar.collapsed
+      .search-wrapper,
+
+      .sidebar.collapsed
+      .section-label,
+
+      .sidebar.collapsed
+      .menu-content,
+
+      .sidebar.collapsed
+      .menu-arrow {
+
         opacity: 1;
 
         width: auto;
@@ -1003,23 +1341,39 @@
         pointer-events: auto;
       }
 
-      .sidebar.collapsed .menu-content {
+
+      .sidebar.collapsed
+      .menu-content {
+
         display: block;
       }
 
-      .sidebar.collapsed .menu-button {
-        justify-content: flex-start;
+
+      .sidebar.collapsed
+      .menu-button {
+
+        justify-content:
+          flex-start;
       }
 
-      .sidebar.collapsed .menu-icon {
+
+      .sidebar.collapsed
+      .menu-icon {
+
         margin-right: 10px;
       }
 
-      .sidebar.collapsed .submenu {
+
+      .sidebar.collapsed
+      .submenu {
+
         display: block;
       }
 
-      .sidebar.collapsed .collapse-button {
+
+      .sidebar.collapsed
+      .collapse-button {
+
         right: 12px;
 
         top: 22px;
@@ -1027,33 +1381,39 @@
         transform: none;
       }
 
-      .sidebar.collapsed .menu {
+
+      .sidebar.collapsed
+      .menu {
+
         padding-top: 3px;
       }
 
-      .sidebar.collapsed .menu-button::after {
+
+      .sidebar.collapsed
+      .menu-button::after {
+
         display: none;
       }
 
-      /* CONTENT */
 
       .content {
-        width: 100%;
-        height: 100dvh;
 
-        padding-top: 54px;
+        width: 100%;
+
+        height: 100dvh;
       }
 
+
       .powerbi-wrapper {
-        top: 54px;
-        right: 0;
-        bottom: 0;
-        left: 0;
+
+        inset: 0;
 
         padding: 0;
       }
 
+
       #powerbi {
+
         width: 100%;
         height: 100%;
 
@@ -1062,75 +1422,200 @@
         box-shadow: none;
       }
 
+
+      .mobile-menu-floating {
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+      }
+
+
       .dashboard-controls {
-        top: 64px;
+
+        top: 10px;
+
         right: 10px;
       }
 
+
       .dashboard-control {
-        width: 32px;
-        height: 32px;
+
+        width: 36px;
+        height: 36px;
       }
+
     }
 
+
     /* =========================================================
-       CELULARES PEQUEÑOS
+       CELULAR VERTICAL
+       
+       MOSTRAR AVISO PARA GIRAR
     ========================================================= */
 
-    @media (max-width: 480px) {
-      .mobile-topbar {
-        height: 50px;
+    @media
+      screen
+      and (max-width: 768px)
+      and (orientation: portrait) {
+
+      .rotate-screen {
+
+        display: flex;
       }
 
-      .content {
-        padding-top: 50px;
+    }
+
+
+    /* =========================================================
+       CELULAR HORIZONTAL
+    ========================================================= */
+
+    @media
+      screen
+      and (max-width: 900px)
+      and (orientation: landscape) {
+
+      .mobile-menu-floating {
+
+        display: flex;
       }
 
-      .powerbi-wrapper {
-        top: 50px;
-      }
 
       .dashboard-controls {
-        top: 58px;
+
+        top: 8px;
+
         right: 8px;
       }
 
+
       .dashboard-control {
+
+        width: 32px;
+        height: 32px;
+      }
+
+
+      .powerbi-wrapper {
+
+        padding: 0;
+      }
+
+
+      #powerbi {
+
+        border-radius: 0;
+      }
+
+    }
+
+
+    /* =========================================================
+       PANTALLA MUY PEQUEÑA EN HORIZONTAL
+    ========================================================= */
+
+    @media
+      screen
+      and (max-width: 700px)
+      and (orientation: landscape) {
+
+      .mobile-menu-floating {
+
+        width: 36px;
+        height: 36px;
+
+        left: 7px;
+        top: 7px;
+      }
+
+
+      .dashboard-controls {
+
+        top: 7px;
+        right: 7px;
+      }
+
+
+      .dashboard-control {
+
         width: 30px;
         height: 30px;
+
+        font-size: 11px;
       }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
-  <div class="app">
 
-    <!-- =====================================================
-         TOPBAR MOBILE
-    ===================================================== -->
+  <!-- =======================================================
+       PANTALLA PARA GIRAR EL CELULAR
+  ======================================================== -->
 
-    <div class="mobile-topbar">
+  <div class="rotate-screen">
 
-      <button
-        class="mobile-menu-button"
-        onclick="abrirMenuMobile()"
-        aria-label="Abrir menú"
-      >
-        <i class="fa-solid fa-bars"></i>
-      </button>
+    <div class="rotate-content">
 
-      <div class="mobile-title">
-        Ministerio de Educación - DGFM
+      <div class="rotate-icon">
+
+        <i class="fa-solid fa-mobile-screen-button"></i>
+
+      </div>
+
+      <div class="rotate-title">
+        Gira tu dispositivo
+      </div>
+
+      <div class="rotate-text">
+
+        Este dashboard está optimizado
+        para visualizarse en formato horizontal.
+
+        <br><br>
+
+        Gira tu celular para continuar.
+
       </div>
 
     </div>
 
+  </div>
+
+
+  <!-- =======================================================
+       APLICACIÓN
+  ======================================================== -->
+
+  <div class="app">
+
 
     <!-- =====================================================
-         OVERLAY MOBILE
-    ===================================================== -->
+         BOTÓN FLOTANTE MOBILE
+    ====================================================== -->
+
+    <button
+      class="mobile-menu-floating"
+      id="mobileMenuButton"
+      onclick="abrirMenuMobile()"
+      title="Abrir menú"
+    >
+
+      <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+
+    <!-- =====================================================
+         OVERLAY
+    ====================================================== -->
 
     <div
       class="sidebar-overlay"
@@ -1141,12 +1626,13 @@
 
     <!-- =====================================================
          SIDEBAR
-    ===================================================== -->
+    ====================================================== -->
 
     <aside
       class="sidebar"
       id="sidebar"
     >
+
 
       <!-- HEADER -->
 
@@ -1155,17 +1641,20 @@
         <div class="brand">
 
           <div class="brand-icon">
+
             <i class="fa-solid fa-chart-pie"></i>
+
           </div>
+
 
           <div class="brand-text">
 
             <div class="brand-title">
-              Ministerio de Educación 
+              Ministerio de Educación - DGFM
             </div>
 
             <div class="brand-subtitle">
-              Dirección general de formación de maestros
+              Centro de análisis e información
             </div>
 
           </div>
@@ -1180,7 +1669,9 @@
           onclick="toggleSidebar()"
           title="Contraer menú"
         >
+
           <i class="fa-solid fa-chevron-left"></i>
+
         </button>
 
 
@@ -1190,14 +1681,16 @@
 
           <div class="search">
 
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i
+              class="fa-solid fa-magnifying-glass"
+            ></i>
 
             <input
               type="text"
               id="search"
               placeholder="Buscar una opción..."
               oninput="buscar()"
-            />
+            >
 
           </div>
 
@@ -1208,7 +1701,7 @@
 
       <!-- ===================================================
            MENÚ
-      =================================================== -->
+      ==================================================== -->
 
       <div class="menu">
 
@@ -1218,7 +1711,7 @@
 
 
         <!-- =================================================
-             1. POBLACIÓN DE MAESTROS
+             POBLACIÓN DE MAESTROS
         ================================================= -->
 
         <div class="menu-item">
@@ -1230,7 +1723,9 @@
           >
 
             <span class="menu-icon">
-              <i class="fa-solid fa-chalkboard-user"></i>
+              <i
+                class="fa-solid fa-chalkboard-user"
+              ></i>
             </span>
 
             <span class="menu-content">
@@ -1245,7 +1740,9 @@
 
             </span>
 
-            <i class="fa-solid fa-chevron-down menu-arrow"></i>
+            <i
+              class="fa-solid fa-chevron-down menu-arrow"
+            ></i>
 
           </button>
 
@@ -1351,7 +1848,7 @@
 
 
         <!-- =================================================
-             2. PERTINENCIA
+             PERTINENCIA
         ================================================= -->
 
         <div class="menu-item">
@@ -1363,7 +1860,9 @@
           >
 
             <span class="menu-icon">
-              <i class="fa-solid fa-chart-column"></i>
+              <i
+                class="fa-solid fa-chart-column"
+              ></i>
             </span>
 
             <span class="menu-content">
@@ -1378,7 +1877,9 @@
 
             </span>
 
-            <i class="fa-solid fa-chevron-down menu-arrow"></i>
+            <i
+              class="fa-solid fa-chevron-down menu-arrow"
+            ></i>
 
           </button>
 
@@ -1427,7 +1928,7 @@
 
 
         <!-- =================================================
-             3. MIGRATORIO
+             MIGRATORIO
         ================================================= -->
 
         <div class="menu-item">
@@ -1454,7 +1955,9 @@
 
             </span>
 
-            <i class="fa-solid fa-chevron-down menu-arrow"></i>
+            <i
+              class="fa-solid fa-chevron-down menu-arrow"
+            ></i>
 
           </button>
 
@@ -1503,7 +2006,7 @@
 
 
         <!-- =================================================
-             4. ESTUDIANTES
+             ESTUDIANTES
         ================================================= -->
 
         <div class="menu-item">
@@ -1515,7 +2018,9 @@
           >
 
             <span class="menu-icon">
-              <i class="fa-solid fa-user-graduate"></i>
+              <i
+                class="fa-solid fa-user-graduate"
+              ></i>
             </span>
 
             <span class="menu-content">
@@ -1530,7 +2035,9 @@
 
             </span>
 
-            <i class="fa-solid fa-chevron-down menu-arrow"></i>
+            <i
+              class="fa-solid fa-chevron-down menu-arrow"
+            ></i>
 
           </button>
 
@@ -1541,7 +2048,6 @@
 
               <a
                 href="#"
-                data-page="estudiantes"
                 onclick="cargarPagina('estudiantes', this); return false;"
               >
                 Estudiantes general
@@ -1549,7 +2055,6 @@
 
               <a
                 href="#"
-                data-page="inicial"
                 onclick="cargarPagina('inicial', this); return false;"
               >
                 Estudiantes inicial
@@ -1557,7 +2062,6 @@
 
               <a
                 href="#"
-                data-page="primaria"
                 onclick="cargarPagina('primaria', this); return false;"
               >
                 Estudiantes primaria
@@ -1565,7 +2069,6 @@
 
               <a
                 href="#"
-                data-page="secundaria"
                 onclick="cargarPagina('secundaria', this); return false;"
               >
                 Estudiantes secundaria
@@ -1573,7 +2076,6 @@
 
               <a
                 href="#"
-                data-page="alternativa"
                 onclick="cargarPagina('alternativa', this); return false;"
               >
                 Estudiantes alternativa
@@ -1581,7 +2083,6 @@
 
               <a
                 href="#"
-                data-page="especial"
                 onclick="cargarPagina('especial', this); return false;"
               >
                 Estudiantes especial
@@ -1595,7 +2096,7 @@
 
 
         <!-- =================================================
-             5. ADMITIDOS
+             ADMITIDOS
         ================================================= -->
 
         <div class="menu-item">
@@ -1607,7 +2108,9 @@
           >
 
             <span class="menu-icon">
-              <i class="fa-solid fa-user-check"></i>
+              <i
+                class="fa-solid fa-user-check"
+              ></i>
             </span>
 
             <span class="menu-content">
@@ -1622,7 +2125,9 @@
 
             </span>
 
-            <i class="fa-solid fa-chevron-down menu-arrow"></i>
+            <i
+              class="fa-solid fa-chevron-down menu-arrow"
+            ></i>
 
           </button>
 
@@ -1633,7 +2138,6 @@
 
               <a
                 href="#"
-                data-page="inscritos"
                 onclick="cargarPagina('inscritos', this); return false;"
               >
                 Inscritos
@@ -1641,7 +2145,6 @@
 
               <a
                 href="#"
-                data-page="admitidos"
                 onclick="cargarPagina('admitidos', this); return false;"
               >
                 Admitidos
@@ -1649,7 +2152,6 @@
 
               <a
                 href="#"
-                data-page="admitidosi"
                 onclick="cargarPagina('admitidosi', this); return false;"
               >
                 Admitidos vs inscritos
@@ -1663,7 +2165,7 @@
 
 
         <!-- =================================================
-             6. ESPECIALIDADES
+             ESPECIALIDADES
         ================================================= -->
 
         <div class="menu-item">
@@ -1675,7 +2177,9 @@
           >
 
             <span class="menu-icon">
-              <i class="fa-solid fa-layer-group"></i>
+              <i
+                class="fa-solid fa-layer-group"
+              ></i>
             </span>
 
             <span class="menu-content">
@@ -1690,7 +2194,9 @@
 
             </span>
 
-            <i class="fa-solid fa-chevron-down menu-arrow"></i>
+            <i
+              class="fa-solid fa-chevron-down menu-arrow"
+            ></i>
 
           </button>
 
@@ -1701,7 +2207,6 @@
 
               <a
                 href="#"
-                data-page="especialidades"
                 onclick="cargarPagina('especialidades', this); return false;"
               >
                 Especialidades 2026
@@ -1715,7 +2220,7 @@
 
 
         <!-- =================================================
-             7. JUBILACIÓN
+             JUBILACIÓN
         ================================================= -->
 
         <div class="menu-item">
@@ -1727,7 +2232,9 @@
           >
 
             <span class="menu-icon">
-              <i class="fa-solid fa-person-walking-arrow-right"></i>
+              <i
+                class="fa-solid fa-person-walking-arrow-right"
+              ></i>
             </span>
 
             <span class="menu-content">
@@ -1742,7 +2249,9 @@
 
             </span>
 
-            <i class="fa-solid fa-chevron-down menu-arrow"></i>
+            <i
+              class="fa-solid fa-chevron-down menu-arrow"
+            ></i>
 
           </button>
 
@@ -1753,7 +2262,6 @@
 
               <a
                 href="#"
-                data-page="jubilacion"
                 onclick="cargarPagina('jubilacion', this); return false;"
               >
                 Jubilación
@@ -1761,7 +2269,6 @@
 
               <a
                 href="#"
-                data-page="prejubilacion"
                 onclick="cargarPagina('prejubilacion', this); return false;"
               >
                 Prejubilación
@@ -1775,7 +2282,7 @@
 
 
         <!-- =================================================
-             8. DEMANDA
+             DEMANDA
         ================================================= -->
 
         <div class="menu-item">
@@ -1787,7 +2294,9 @@
           >
 
             <span class="menu-icon">
-              <i class="fa-solid fa-arrow-trend-up"></i>
+              <i
+                class="fa-solid fa-arrow-trend-up"
+              ></i>
             </span>
 
             <span class="menu-content">
@@ -1802,7 +2311,9 @@
 
             </span>
 
-            <i class="fa-solid fa-chevron-down menu-arrow"></i>
+            <i
+              class="fa-solid fa-chevron-down menu-arrow"
+            ></i>
 
           </button>
 
@@ -1813,7 +2324,6 @@
 
               <a
                 href="#"
-                data-page="cantidad"
                 onclick="cargarPagina('cantidad', this); return false;"
               >
                 Maestros necesarios por cantidad
@@ -1821,7 +2331,6 @@
 
               <a
                 href="#"
-                data-page="carga_horaria"
                 onclick="cargarPagina('carga_horaria', this); return false;"
               >
                 Maestros necesarios por carga horaria
@@ -1835,7 +2344,7 @@
 
 
         <!-- =================================================
-             9. CUPOS
+             CUPOS
         ================================================= -->
 
         <div class="menu-item">
@@ -1847,7 +2356,9 @@
           >
 
             <span class="menu-icon">
-              <i class="fa-solid fa-layer-group"></i>
+              <i
+                class="fa-solid fa-layer-group"
+              ></i>
             </span>
 
             <span class="menu-content">
@@ -1862,7 +2373,9 @@
 
             </span>
 
-            <i class="fa-solid fa-chevron-down menu-arrow"></i>
+            <i
+              class="fa-solid fa-chevron-down menu-arrow"
+            ></i>
 
           </button>
 
@@ -1873,7 +2386,6 @@
 
               <a
                 href="#"
-                data-page="cupos"
                 onclick="cargarPagina('cupos', this); return false;"
               >
                 Cupos requeridos
@@ -1891,27 +2403,32 @@
 
 
     <!-- =====================================================
-         CONTENIDO
-    ===================================================== -->
+         CONTENIDO POWER BI
+    ====================================================== -->
 
     <main class="content">
 
-      <!-- DASHBOARD -->
 
       <div class="powerbi-wrapper">
 
         <iframe
           id="powerbi"
           title="Dashboard Ministerio de Educación - DGFM"
+
           src="https://app.powerbi.com/reportEmbed?reportId=605e718e-1305-4b4c-9364-9df2f9baee51&autoAuth=true&ctid=77cab36c-76b2-48c3-9c54-cb9e4ee09b72&navContentPaneEnabled=false&pageName=4ff34d3c7d51ed284a12"
+
           frameborder="0"
+
           allowfullscreen="true"
+
         ></iframe>
 
       </div>
 
 
-      <!-- CONTROLES DASHBOARD -->
+      <!-- ===================================================
+           CONTROLES
+      ==================================================== -->
 
       <div class="dashboard-controls">
 
@@ -1920,21 +2437,28 @@
           onclick="recargarDashboard()"
           title="Actualizar dashboard"
         >
+
           <i class="fa-solid fa-rotate"></i>
+
         </button>
+
 
         <button
           class="dashboard-control"
           onclick="pantallaCompleta()"
           title="Pantalla completa"
         >
+
           <i class="fa-solid fa-expand"></i>
+
         </button>
 
       </div>
 
 
-      <!-- LOADING -->
+      <!-- ===================================================
+           LOADING
+      ==================================================== -->
 
       <div
         class="loading"
@@ -1950,14 +2474,15 @@
   </div>
 
 
-  <!-- =====================================================
+  <!-- =======================================================
        JAVASCRIPT
-  ===================================================== -->
+  ======================================================== -->
 
   <script>
 
+
     /* =========================================================
-       CONFIGURACIÓN POWER BI
+       POWER BI
     ========================================================= */
 
     const POWERBI = {
@@ -1965,9 +2490,8 @@
       base:
         "https://app.powerbi.com/reportEmbed?reportId=605e718e-1305-4b4c-9364-9df2f9baee51&autoAuth=true&ctid=77cab36c-76b2-48c3-9c54-cb9e4ee09b72&navContentPaneEnabled=false",
 
-      paginas: {
 
-        /* POBLACIÓN */
+      paginas: {
 
         evolucion:
           "4ff34d3c7d51ed284a12",
@@ -2112,7 +2636,7 @@
 
 
     /* =========================================================
-       CARGAR PÁGINA POWER BI
+       CARGAR PÁGINA
     ========================================================= */
 
     function cargarPagina(
@@ -2136,12 +2660,8 @@
       }
 
 
-      /* LOADING */
-
       loading.classList.add("show");
 
-
-      /* URL */
 
       const nuevaURL =
         POWERBI.base +
@@ -2149,32 +2669,31 @@
         encodeURIComponent(pageName);
 
 
-      /* CAMBIAR IFRAMe */
+      iframe.src =
+        nuevaURL;
 
-      iframe.src = nuevaURL;
-
-
-      /* QUITAR ACTIVOS */
 
       document
         .querySelectorAll(".submenu a")
         .forEach((a) => {
 
-          a.classList.remove("active");
+          a.classList.remove(
+            "active"
+          );
 
         });
 
 
-      /* ACTIVAR ACTUAL */
-
       if (elemento) {
 
-        elemento.classList.add("active");
+        elemento.classList.add(
+          "active"
+        );
 
       }
 
 
-      /* MOBILE */
+      /* En móvil cerrar menú */
 
       if (
         window.innerWidth <= 768
@@ -2188,7 +2707,7 @@
 
 
     /* =========================================================
-       TOGGLE MENÚ
+       TOGGLE CATEGORÍA
     ========================================================= */
 
     function toggleMenu(button) {
@@ -2196,17 +2715,20 @@
       const submenu =
         button.nextElementSibling;
 
+
       const estabaAbierto =
-        button.classList.contains("open");
+        button.classList.contains(
+          "open"
+        );
 
-
-      /* CERRAR TODOS */
 
       document
         .querySelectorAll(".menu-button")
         .forEach((btn) => {
 
-          btn.classList.remove("open");
+          btn.classList.remove(
+            "open"
+          );
 
         });
 
@@ -2215,18 +2737,22 @@
         .querySelectorAll(".submenu")
         .forEach((menu) => {
 
-          menu.classList.remove("open");
+          menu.classList.remove(
+            "open"
+          );
 
         });
 
 
-      /* ABRIR SELECCIONADO */
-
       if (!estabaAbierto) {
 
-        button.classList.add("open");
+        button.classList.add(
+          "open"
+        );
 
-        submenu.classList.add("open");
+        submenu.classList.add(
+          "open"
+        );
 
       }
 
@@ -2234,7 +2760,7 @@
 
 
     /* =========================================================
-       CONTRAER SIDEBAR
+       SIDEBAR PC
     ========================================================= */
 
     function toggleSidebar() {
@@ -2247,7 +2773,10 @@
 
       }
 
-      sidebar.classList.toggle("collapsed");
+
+      sidebar.classList.toggle(
+        "collapsed"
+      );
 
     }
 
@@ -2262,14 +2791,14 @@
         "mobile-open"
       );
 
+
       document
         .getElementById(
           "sidebarOverlay"
         )
-        .classList.add("show");
-
-      document.body.style.overflow =
-        "hidden";
+        .classList.add(
+          "show"
+        );
 
     }
 
@@ -2280,14 +2809,14 @@
         "mobile-open"
       );
 
+
       document
         .getElementById(
           "sidebarOverlay"
         )
-        .classList.remove("show");
-
-      document.body.style.overflow =
-        "";
+        .classList.remove(
+          "show"
+        );
 
     }
 
@@ -2336,17 +2865,18 @@
 
 
     /* =========================================================
-       RECARGAR DASHBOARD
+       RECARGAR
     ========================================================= */
 
     function recargarDashboard() {
 
-      loading.classList.add("show");
+      loading.classList.add(
+        "show"
+      );
 
-      const actual =
+
+      iframe.src =
         iframe.src;
-
-      iframe.src = actual;
 
     }
 
@@ -2391,7 +2921,7 @@
 
 
     /* =========================================================
-       LOADING POWER BI
+       LOADING
     ========================================================= */
 
     iframe.addEventListener(
@@ -2414,7 +2944,7 @@
 
 
     /* =========================================================
-       ESC PARA CERRAR MOBILE
+       ESC
     ========================================================= */
 
     document.addEventListener(
@@ -2425,13 +2955,7 @@
           event.key === "Escape"
         ) {
 
-          if (
-            window.innerWidth <= 768
-          ) {
-
-            cerrarMenuMobile();
-
-          }
+          cerrarMenuMobile();
 
         }
 
@@ -2440,7 +2964,30 @@
 
 
     /* =========================================================
-       RESPONSIVE
+       CAMBIO DE ORIENTACIÓN
+    ========================================================= */
+
+    window.addEventListener(
+      "orientationchange",
+      function () {
+
+        setTimeout(
+          function () {
+
+            window.dispatchEvent(
+              new Event("resize")
+            );
+
+          },
+          300
+        );
+
+      }
+    );
+
+
+    /* =========================================================
+       RESIZE
     ========================================================= */
 
     window.addEventListener(
