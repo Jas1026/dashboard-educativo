@@ -1548,6 +1548,326 @@
 
     }
 
+
+    /* =========================================================
+       INFORMACIÓN DE CADA PÁGINA
+    ========================================================= */
+/* MODAL */
+    .info-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 20000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(7, 17, 31, 0.62);
+      backdrop-filter: blur(7px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: 0.22s ease;
+    }
+
+    .info-modal.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .info-modal-card {
+      width: min(560px, 100%);
+      max-height: min(700px, 88vh);
+      overflow: auto;
+      border: 1px solid rgba(99, 102, 241, 0.18);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(99,102,241,.16), transparent 32%),
+        linear-gradient(145deg, #0b1728, #111f33);
+      color: white;
+      box-shadow: 0 25px 80px rgba(0,0,0,.38);
+      transform: translateY(14px) scale(.97);
+      transition: .24s ease;
+    }
+
+    .info-modal.show .info-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .info-modal-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 22px 22px 15px;
+    }
+
+    .info-modal-icon {
+      width: 45px;
+      height: 45px;
+      min-width: 45px;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #6366f1, #7c3aed);
+      box-shadow: 0 8px 22px rgba(99,102,241,.28);
+      font-size: 18px;
+    }
+
+    .info-modal-title {
+      flex: 1;
+      font-size: 17px;
+      line-height: 1.3;
+      font-weight: 750;
+    }
+
+    .info-modal-subtitle {
+      margin-top: 4px;
+      color: #8192a8;
+      font-size: 10px;
+    }
+
+    .info-modal-close {
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 9px;
+      background: rgba(255,255,255,.045);
+      color: #8ea0b5;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .2s ease;
+    }
+
+    .info-modal-close:hover {
+      color: white;
+      background: rgba(255,255,255,.10);
+    }
+
+    .info-modal-body {
+      padding: 4px 22px 22px;
+      color: #cbd5e1;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .info-modal-body p {
+      margin-bottom: 12px;
+    }
+
+    .info-modal-tip {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 11px;
+      border: 1px solid rgba(129,140,248,.12);
+      background: rgba(99,102,241,.08);
+      color: #aeb7ff;
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 600px) {
+      .info-modal {
+        padding: 12px;
+      }
+
+      .info-modal-card {
+        border-radius: 16px;
+      }
+
+      .info-modal-header {
+        padding: 17px 17px 12px;
+      }
+
+      .info-modal-body {
+        padding: 4px 17px 17px;
+      }
+    }
+
+  
+
+    /* =========================================================
+       ESTÉTICA PREMIUM
+       ========================================================= */
+
+    body {
+      background: #e9eef7;
+    }
+
+    .content {
+      background:
+        radial-gradient(circle at 85% 5%, rgba(99,102,241,.10), transparent 24%),
+        radial-gradient(circle at 20% 100%, rgba(124,58,237,.06), transparent 28%),
+        #eef2f7;
+    }
+
+    .powerbi-wrapper {
+      padding: 10px;
+    }
+
+    #powerbi {
+      border-radius: 18px;
+      box-shadow:
+        0 18px 55px rgba(15,23,42,.12),
+        0 2px 8px rgba(15,23,42,.05);
+    }
+
+    .dashboard-controls {
+      top: 22px;
+      right: 22px;
+      gap: 8px;
+      padding: 6px;
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: 15px;
+      background: rgba(255,255,255,.58);
+      backdrop-filter: blur(18px) saturate(150%);
+      -webkit-backdrop-filter: blur(18px) saturate(150%);
+      box-shadow: 0 10px 30px rgba(15,23,42,.10);
+    }
+
+    .dashboard-control {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      border-color: rgba(99,102,241,.10);
+      background: rgba(255,255,255,.88);
+      box-shadow: 0 5px 16px rgba(15,23,42,.08);
+      font-size: 13px;
+    }
+
+    .dashboard-control:hover {
+      color: #4f46e5;
+      transform: translateY(-2px);
+      box-shadow: 0 9px 22px rgba(79,70,229,.18);
+    }
+
+    .dashboard-info-control {
+      color: #6366f1;
+    }
+
+    .dashboard-info-control:hover {
+      color: white;
+      background: linear-gradient(135deg,#6366f1,#7c3aed);
+      border-color: transparent;
+    }
+
+    .info-modal {
+      padding: 18px;
+      background: rgba(3,8,20,.58);
+      backdrop-filter: blur(13px) saturate(125%);
+      -webkit-backdrop-filter: blur(13px) saturate(125%);
+    }
+
+    .info-modal-card {
+      width: min(620px,100%);
+      max-height: min(720px,88vh);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(129,140,248,.22), transparent 34%),
+        radial-gradient(circle at 0% 100%, rgba(124,58,237,.14), transparent 35%),
+        linear-gradient(145deg,#091426,#101e34 60%,#0c1729);
+      box-shadow:
+        0 35px 100px rgba(0,0,0,.48),
+        0 0 0 1px rgba(255,255,255,.025) inset;
+    }
+
+    .info-modal-header {
+      position: relative;
+      padding: 26px 26px 19px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .info-modal-icon {
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
+      border-radius: 16px;
+      background: linear-gradient(135deg,#6366f1,#7c3aed 70%,#8b5cf6);
+      box-shadow: 0 12px 30px rgba(99,102,241,.34);
+    }
+
+    .info-modal-title {
+      font-size: 19px;
+      letter-spacing: -.2px;
+    }
+
+    .info-modal-subtitle {
+      margin-top: 6px;
+      color: #9aa9bd;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .info-modal-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      background: rgba(255,255,255,.055);
+      transition: .2s ease;
+    }
+
+    .info-modal-close:hover {
+      color: white;
+      background: rgba(239,68,68,.18);
+      border-color: rgba(248,113,113,.18);
+      transform: rotate(4deg) scale(1.04);
+    }
+
+    .info-modal-body {
+      padding: 22px 26px 27px;
+      color: #d6dfeb;
+      font-size: 12px;
+      line-height: 1.75;
+    }
+
+    .info-modal-body p {
+      margin: 0 0 18px;
+    }
+
+    .info-modal-tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 15px 16px;
+      border: 1px solid rgba(129,140,248,.15);
+      border-radius: 15px;
+      color: #cbd5e1;
+      background: linear-gradient(135deg,rgba(99,102,241,.12),rgba(124,58,237,.06));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+    }
+
+    .info-modal-tip i {
+      margin-top: 3px;
+      color: #a5b4fc;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .powerbi-wrapper { padding: 6px; }
+      #powerbi { border-radius: 13px; }
+      .dashboard-controls {
+        top: 14px;
+        right: 14px;
+        padding: 5px;
+      }
+      .dashboard-control {
+        width: 36px;
+        height: 36px;
+      }
+      .info-modal-card {
+        border-radius: 21px;
+      }
+      .info-modal-header {
+        padding: 21px 20px 16px;
+      }
+      .info-modal-body {
+        padding: 18px 20px 22px;
+      }
+    }
+
   </style>
 
 </head>
@@ -1750,7 +2070,6 @@
           <div class="submenu open">
 
             <div class="submenu-inner">
-
               <a
                 href="#"
                 class="active"
@@ -1792,8 +2111,6 @@
                 Maestros con modalidad B3 - 164.448
               </a>
 
-       
-
               <a
                 href="#"
                 data-page="ue_164448"
@@ -1801,6 +2118,7 @@
               >
                 Maestros por ESFM/UA - 164.448
               </a>
+
 
             </div>
 
@@ -1847,14 +2165,14 @@
           <div class="submenu open">
 
             <div class="submenu-inner">
-
-                          <a
+              <a
                 href="#"
                 data-page="total_est_2026"
                 onclick="cargarPagina('total_est_2026', this); return false;"
               >
                 Estudiantes ESFM 2026
               </a>
+
               <a
                 href="#"
                 data-page="total_modalidadB3_est"
@@ -1870,6 +2188,7 @@
               >
                 Estudiantes con modalidad B3 Específico
               </a>
+
             </div>
 
           </div>
@@ -1916,7 +2235,6 @@
           <div class="submenu">
 
             <div class="submenu-inner">
-
               <a
                 href="#"
                 data-page="pertinencia"
@@ -1948,6 +2266,7 @@
               >
                 Comparativa de pertinencia - 164.448
               </a>
+
 
             </div>
 
@@ -1994,7 +2313,6 @@
           <div class="submenu">
 
             <div class="submenu-inner">
-
               <a
                 href="#"
                 data-page="migratorio_2_bd"
@@ -2026,6 +2344,7 @@
               >
                 Movimiento distrital - 35.474
               </a>
+
 
             </div>
 
@@ -2074,7 +2393,6 @@
           <div class="submenu">
 
             <div class="submenu-inner">
-
               <a
                 href="#"
                 onclick="cargarPagina('estudiantes', this); return false;"
@@ -2116,6 +2434,7 @@
               >
                 Estudiantes especial
               </a>
+
 
             </div>
 
@@ -2164,7 +2483,6 @@
           <div class="submenu">
 
             <div class="submenu-inner">
-
               <a
                 href="#"
                 onclick="cargarPagina('inscritos', this); return false;"
@@ -2185,6 +2503,7 @@
               >
                 Admitidos vs inscritos
               </a>
+
 
             </div>
 
@@ -2233,13 +2552,13 @@
           <div class="submenu">
 
             <div class="submenu-inner">
-
               <a
                 href="#"
                 onclick="cargarPagina('especialidades', this); return false;"
               >
                 Especialidades 2026
               </a>
+
 
             </div>
 
@@ -2288,7 +2607,6 @@
           <div class="submenu">
 
             <div class="submenu-inner">
-
               <a
                 href="#"
                 onclick="cargarPagina('jubilacion', this); return false;"
@@ -2302,6 +2620,7 @@
               >
                 Prejubilación
               </a>
+
 
             </div>
 
@@ -2350,14 +2669,13 @@
           <div class="submenu">
 
             <div class="submenu-inner">
-
-
               <a
                 href="#"
                 onclick="cargarPagina('carga_horaria', this); return false;"
               >
                 Maestros necesarios por carga horaria
               </a>
+
 
             </div>
 
@@ -2412,12 +2730,14 @@
               >
                 Previsión 2031
               </a>
+
               <a
                 href="#"
                 onclick="cargarPagina('cupos', this); return false;"
               >
                 Cupos requeridos
               </a>
+
 
             </div>
 
@@ -2472,6 +2792,19 @@
 
 
         <button
+          class="dashboard-control dashboard-info-control"
+          id="pageInfoButton"
+          onclick="mostrarInfoPaginaActual(event)"
+          title="Información de esta página"
+          aria-label="Información de esta página"
+        >
+
+          <i class="fa-solid fa-circle-info"></i>
+
+        </button>
+
+
+        <button
           class="dashboard-control"
           onclick="pantallaCompleta()"
           title="Pantalla completa"
@@ -2502,6 +2835,56 @@
   </div>
 
 
+
+  <!-- =======================================================
+       MODAL DE INFORMACIÓN DE PÁGINA
+  ======================================================== -->
+
+  <div
+    class="info-modal"
+    id="infoModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="infoModalTitle"
+    onclick="cerrarInfoSiFuera(event)"
+  >
+    <div class="info-modal-card">
+
+      <div class="info-modal-header">
+
+        <div class="info-modal-icon">
+          <i class="fa-solid fa-circle-info"></i>
+        </div>
+
+        <div>
+          <div class="info-modal-title" id="infoModalTitle">
+            Información
+          </div>
+
+          <div class="info-modal-subtitle" id="infoModalSubtitle">
+            Descripción del módulo
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="info-modal-close"
+          onclick="cerrarInfo()"
+          title="Cerrar"
+          aria-label="Cerrar"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+      <div class="info-modal-body" id="infoModalBody">
+        <p>Selecciona una página para consultar su información.</p>
+      </div>
+
+    </div>
+  </div>
+
   <!-- =======================================================
        JAVASCRIPT
   ======================================================== -->
@@ -2512,6 +2895,322 @@
     /* =========================================================
        POWER BI
     ========================================================= */
+
+
+    /* =========================================================
+       INFORMACIÓN DE CADA PÁGINA
+       ---------------------------------------------------------
+       AQUÍ PUEDES CAMBIAR LOS MENSAJES CUANDO QUIERAS.
+    ========================================================= */
+
+    const INFORMACION_PAGINAS = {
+
+      evolucion: {
+        titulo: "Planilla de maestros",
+        subtitulo: "Población general de docentes",
+        descripcion: "Esta página presenta información general sobre la población total de maestros registrada en el sistema, diferenciando entre personal en activo e inactivo.",
+        tip: "Usa los gráficos para consultar la distribución del personal docente a nivel nacional y la proporción geográfica por departamento."
+      },
+
+      especialidad_164448: {
+        titulo: "Maestros por formación",
+        subtitulo: "Especialidades y pertinencia",
+        descripcion: "Muestra la cantidad de docentes clasificados según su perfil profesional, área de formación académica y grado de pertinencia en el sistema educativo.",
+        tip: "Aplica los filtros superiores por departamento, distrito o nivel para analizar qué especialidades tienen mayor o menor presencia en cada región."
+      },
+
+      total_trabajando_35474: {
+        titulo: "Maestros totales vs. trabajando",
+        subtitulo: "Evolución histórica de actividad",
+        descripcion: "Permite comparar la cantidad total de docentes registrados frente a los que se encuentran activamente trabajando durante el periodo de 2016 a 2025.",
+        tip: "Analiza la tendencia por gestión en el gráfico de línea para identificar variaciones históricas en la contratación y actividad docente."
+      },
+
+      total_trabajando_164448: {
+        titulo: "Maestros totales vs. trabajando",
+        subtitulo: "Comparativo anual 2025 - 2026",
+        descripcion: "Esta vista permite evaluar la variación del número de docentes activos de un año a otro a nivel departamental.",
+        tip: "Observa las barras dobles para identificar los departamentos con mayor crecimiento de personal docente entre la gestión 2025 y 2026."
+      },
+
+      total_modalidadB3: {
+        titulo: "Planilla de maestros con modalidad B3",
+        subtitulo: "Inclusión y discapacidad docente",
+        descripcion: "Presenta el registro de docentes que cuentan con la modalidad B3, detallando su distribución por tipo de discapacidad, grado y titulación.",
+        tip: "Filtra por tipo de discapacidad o departamento para visualizar la asignación de cargos e integración laboral de este grupo."
+      },
+
+      ue_164448: {
+        titulo: "Maestros por ESFM/UA",
+        subtitulo: "Origen de formación académica",
+        descripcion: "Desglosa la cantidad de maestros graduados según la Escuela Superior de Formación de Maestros (ESFM) o Unidad Académica (UA) de procedencia.",
+        tip: "Consulta el ranking para identificar las instituciones formadoras que aportan la mayor cantidad de docentes al sistema."
+      },
+
+      total_est_2026: {
+        titulo: "Planilla inscritos 2026",
+        subtitulo: "Estudiantes en formación docente",
+        descripcion: "Ofrece un panorama general de los estudiantes matriculados en las ESFM durante el año 2026, distribuidos por año de cursada, sede y especialidad.",
+        tip: "Filtra por año que cursa (1º a 5º) para proyectar la cantidad de futuros egresados por departamento y especialidad."
+      },
+
+      total_modalidadB3_est: {
+        titulo: "Estudiantes con modalidad B3",
+        subtitulo: "Proporción de inclusión en formación",
+        descripcion: "Compara el total de estudiantes inscritos en las ESFM frente a aquellos que ingresaron bajo la modalidad B3 según su especialidad y año de estudio.",
+        tip: "Revisa los gráficos comparativos para entender la tasa de participación de la modalidad B3 en la matrícula total."
+      },
+
+      total_modalidadB3_esp: {
+        titulo: "Estudiantes con modalidad B3",
+        subtitulo: "Detalle por nivel y demografía",
+        descripcion: "Proporciona información detallada sobre los estudiantes de modalidad B3 segmentados por año de estudio, departamento, ESFM y distribución por género.",
+        tip: "Selecciona los botones superiores (1er año a 5to año) para examinar la progresión académica de este grupo de estudiantes."
+      },
+
+      pertinencia: {
+        titulo: "Evolución de pertinencia",
+        subtitulo: "Comparativa histórica de coincidencia perfiles",
+        descripcion: "Muestra la tendencia y variación del porcentaje de pertinencia inicial frente a la pertinencia actual de los maestros a lo largo de las gestiones.",
+        tip: "Compara la brecha entre la pertinencia inicial y actual para evaluar las mejoras en la asignación de materias según el perfil profesional."
+      },
+
+      no_pertinencia: {
+        titulo: "No pertinencia departamental",
+        subtitulo: "Comparativa de pertinencia por región",
+        descripcion: "Presenta indicadores sobre el porcentaje nacional de pertinencia actual y no pertinencia, detallando la cantidad de maestros que mejoraron, mantuvieron o perdieron su pertinencia por departamento.",
+        tip: "Consulta las barras por departamento para evaluar las regiones con mayor reducción de no pertinencia académica."
+      },
+
+      estado_pertinencia: {
+        titulo: "Estado de pertinencia inicial vs. actual",
+        subtitulo: "Evolución porcentual de pertinencia",
+        descripcion: "Muestra la transición del estado de pertinencia inicial al actual entre los docentes de la muestra, destacando el incremento en el grupo catalogado como 'Pertinente'.",
+        tip: "Compara las dos gráficas circulares para visualizar la reducción porcentual del grupo de 'No pertinente'."
+      },
+
+      comparativa: {
+        titulo: "Comparativa de pertinencia general",
+        subtitulo: "Distribución por nivel y área",
+        descripcion: "Analiza la pertinencia docente clasificada por niveles educativos (Secundario, Primario, Inicial, etc.), áreas (urbana/rural) y la evolución de maestros activos por año.",
+        tip: "Filtra por departamento para revisar la distribución específica entre áreas urbanas y rurales según la categoría de pertinencia."
+      },
+
+      migratorio_2_bd: {
+        titulo: "Análisis migratorio - Origen a destino",
+        subtitulo: "Movilidad desde la ciudad natal",
+        descripcion: "Muestra los flujos migratorios de los estudiantes admitidos, desde su departamento o ciudad natal hacia la ESFM o Unidad Académica de destino.",
+        tip: "Usa los filtros de la izquierda para analizar qué departamentos concentran la mayor atracción de estudiantes de otras regiones."
+      },
+
+      migratorio_1: {
+        titulo: "Análisis migratorio - Egreso a empleo",
+        subtitulo: "Movilidad profesional e inserción laboral",
+        descripcion: "Detalla la movilidad geográfica de los docentes desde el departamento de egreso de la ESFM hacia su departamento de trabajo actual o de primer empleo.",
+        tip: "Observa el gráfico de primer empleo para identificar los departamentos con mayor retención de sus propios egresados."
+      },
+
+      migratorio_3: {
+        titulo: "Análisis migratorio - Vista por origen",
+        subtitulo: "Destinos por departamento de origen",
+        descripcion: "Desglosa individualmente para cada departamento de origen los principales destinos a los que migran los estudiantes o docentes.",
+        tip: "Compara las cuadrículas para identificar los patrones de migración predominantes desde cada región del país."
+      },
+
+      distrital: {
+        titulo: "Movimiento distrital de maestros",
+        subtitulo: "Tránsito entre distritos educativos",
+        descripcion: "Registra el flujo de docentes entre distritos de origen y distritos actuales dentro del sistema educativo nacional.",
+        tip: "Selecciona un distrito específico en el panel izquierdo para ver las combinaciones de movilidad distrital más frecuentes."
+      },
+
+      estudiantes: {
+        titulo: "Estudiantes matriculados con previsión futura",
+        subtitulo: "Panorama general de matrícula",
+        descripcion: "Muestra la tendencia histórica global de estudiantes matriculados en unidades educativas desde 2016 y su proyección futura a 2026, junto al desglose por departamento.",
+        tip: "Observa la línea de proyección sombreada para anticipar las tendencias en la demanda de cobertura educativa."
+      },
+
+      inicial: {
+        titulo: "Estudiantes matriculados - Nivel Inicial",
+        subtitulo: "Previsión futura para educación inicial",
+        descripcion: "Presenta la evolución histórica y la proyección de matriculados en el Nivel Inicial, permitiendo filtrar por departamento y subniveles.",
+        tip: "Evalúa la tendencia de la curva para prever la demanda futura de cupos y maestros en la etapa inicial."
+      },
+
+      primaria: {
+        titulo: "Estudiantes matriculados - Nivel Primaria",
+        subtitulo: "Previsión futura para educación primaria",
+        descripcion: "Detalla el comportamiento histórico y la estimación futura del total de matriculados en el Nivel Primaria según la gestión y año de escolaridad.",
+        tip: "Navega entre los botones de Nivel 1 a Nivel 6 para analizar la retención de estudiantes año a año."
+      },
+
+      secundaria: {
+        titulo: "Estudiantes matriculados - Nivel Secundaria",
+        subtitulo: "Previsión futura para educación secundaria",
+        descripcion: "Muestra la tendencia histórica de matriculados en el Nivel Secundaria por año y curso (Nivel 1 a Nivel 6), agregando la curva de proyección futura y filtros por departamento.",
+        tip: "Selecciona un curso específico en los botones superiores para analizar la retención escolar hacia los últimos años de secundaria."
+      },
+
+      alternativa: {
+        titulo: "Estudiantes matriculados - Educación Alternativa",
+        subtitulo: "Previsión futura para educación alternativa",
+        descripcion: "Detalla el comportamiento de la matrícula en la subsistema de Educación Alternativa, comparando áreas Humanística y Técnica junto con su proyección de demanda.",
+        tip: "Alterna entre Humanística y Técnica para evaluar qué área concentra la mayor proyección de estudiantes."
+      },
+
+      especial: {
+        titulo: "Estudiantes matriculados - Educación Especial",
+        subtitulo: "Previsión futura por tipo de discapacidad o talento",
+        descripcion: "Presenta el histórico y la previsión futura de matriculados en Educación Especial, desglosado por áreas como Auditiva, Intelectual, Visual, Trastorno del Espectro Autista, entre otras.",
+        tip: "Filtra por tipo de discapacidad para identificar las áreas con mayor crecimiento en la demanda de atención especializada."
+      },
+
+      inscritos: {
+        titulo: "Planilla de inscritos",
+        subtitulo: "Postulantes y puntajes de admisión",
+        descripcion: "Muestra el volumen total de postulantes inscritos, la evolución por gestión, la distribución departamental y los promedios de puntaje alcanzados por especialidad.",
+        tip: "Revisa los mejores puntajes por especialidad para identificar las áreas con mayor exigencia académica en el proceso de admisión."
+      },
+
+      admitidos: {
+        titulo: "Planilla de cupos habilitados",
+        subtitulo: "Oferta de plazas en las ESFM",
+        descripcion: "Analiza la cantidad global de cupos ofertados por gestión, la disponibilidad por departamento y las ESFM con mayor número de plazas habilitadas.",
+        tip: "Compara la oferta por ESFM para identificar los centros de formación con mayor capacidad de absorción de postulantes."
+      },
+
+      admitidosi: {
+        titulo: "Inscritos vs. cupos habilitados",
+        subtitulo: "Relación entre demanda y oferta académica",
+        descripcion: "Contrapone la cantidad de postulantes inscritos contra los cupos disponibles a lo largo de los años, desglosando la brecha por departamento y especialidad.",
+        tip: "Identifica las especialidades donde la demanda supera significativamente la oferta de plazas disponibles."
+      },
+
+      especialidades: {
+        titulo: "Planilla de especialidades 2026",
+        subtitulo: "Distribución de la oferta formativa actual",
+        descripcion: "Presenta la oferta de especialidades clasificadas por áreas del conocimiento (Ciencias Exactas, Educación Primaria, Inicial, etc.) y la cantidad de inscritos por ESFM.",
+        tip: "Filtra por categoría para visualizar qué áreas temáticas concentran el mayor número de ofertas formativas."
+      },
+
+      jubilacion: {
+        titulo: "Planilla de maestros en edad de jubilación",
+        subtitulo: "Proyección de retiros del sistema",
+        descripcion: "Muestra la cantidad de docentes que alcanzan la edad de jubilación, desglosados por rangos de edad (60-64, 65-69, etc.), departamento y nivel educativo.",
+        tip: "Analiza los rangos de edad más altos para prever los requerimientos de reposición docente a corto plazo."
+      },
+
+      prejubilacion: {
+        titulo: "Planilla de maestros en pre-jubilación",
+        subtitulo: "Tránsito hacia el retiro docente",
+        descripcion: "Detalla el número de docentes en etapa de pre-jubilación, destacando el departamento con mayor incidencia, los cargos que desempeñan y su distribución por nivel.",
+        tip: "Revisa el desglose por cargo para anticipar las especialidades donde se generarán vacantes de forma inminente."
+      },
+
+      carga_horaria: {
+        titulo: "Maestros necesarios en relación a parámetros normativos",
+        subtitulo: "Cálculo de oferta, demanda y requerimiento docente",
+        descripcion: "Estima la necesidad real de docentes cruzando matriculados, paralelos y carga horaria del pensum, identificando la cantidad de maestros faltantes o el balance de horas requeridas.",
+        tip: "Utiliza los filtros de departamento y nivel para identificar exactamente dónde se concentra el déficit de maestros."
+      },
+
+      prevision: {
+        titulo: "Previsiones de admisión y egreso 2027-2031",
+        subtitulo: "Proyección quinquenal de estudiantes y tasa de egreso",
+        descripcion: "Compara la tendencia histórica de inscritos y cupos habilitados con su proyección futura (2027-2031), considerando un ciclo de formación de 5 años, una tasa de egreso del 72,81 % y una empleabilidad del 90,55 %.",
+        tip: "Usa la tasa de egreso para calcular cuántos cupos de ingreso habilitar hoy y garantizar los graduados requeridos en 5 años."
+      },
+
+      cupos: {
+        titulo: "Planificación estratégica de cupos ESFM 2027",
+        subtitulo: "Determinación de plazas necesarias por área y región",
+        descripcion: "Calcula el total de cupos a ofertar cruzando la demanda real de maestros, paralelos y pensum con la tasa de egreso esperada, desglosando las plazas por especialidad, nivel y departamento.",
+        tip: "Compara los cupos ofertados en 2026 contra la necesidad real de 2027 para ajustar la apertura de paralelos por especialidad."
+      }
+
+    };
+
+
+    let paginaActual = "evolucion";
+
+
+    function mostrarInfoPaginaActual(event) {
+
+      mostrarInfo(paginaActual, event);
+
+    }
+
+
+    function mostrarInfo(pageKey, event) {
+
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      const info = INFORMACION_PAGINAS[pageKey];
+
+      const modal = document.getElementById("infoModal");
+      const titulo = document.getElementById("infoModalTitle");
+      const subtitulo = document.getElementById("infoModalSubtitle");
+      const body = document.getElementById("infoModalBody");
+
+      if (!info) {
+        titulo.textContent = "Información de esta página";
+        subtitulo.textContent = "Mensaje de prueba";
+        body.innerHTML = `
+          <p>
+            Esta página todavía no tiene una descripción configurada.
+          </p>
+
+          <div class="info-modal-tip">
+            <i class="fa-solid fa-lightbulb"></i>
+            Puedes agregar su explicación en el objeto
+            <strong>INFORMACION_PAGINAS</strong>.
+          </div>
+        `;
+      } else {
+        titulo.textContent = info.titulo;
+        subtitulo.textContent = info.subtitulo;
+
+        body.innerHTML = `
+          <p>${info.descripcion}</p>
+
+          <div class="info-modal-tip">
+            <i class="fa-solid fa-lightbulb"></i>
+            ${info.tip}
+          </div>
+        `;
+      }
+
+      modal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+
+    function cerrarInfo() {
+
+      const modal =
+        document.getElementById("infoModal");
+
+      modal.classList.remove("show");
+
+      document.body.style.overflow = "";
+    }
+
+
+    function cerrarInfoSiFuera(event) {
+
+      if (
+        event.target ===
+        document.getElementById("infoModal")
+      ) {
+        cerrarInfo();
+      }
+
+    }
+
 
     const POWERBI = {
 
@@ -2671,6 +3370,14 @@ prevision:"56a3511d0127d015c46e",
       nombre,
       elemento
     ) {
+
+      paginaActual = nombre;
+
+      const pageInfoButton = document.getElementById("pageInfoButton");
+      if (pageInfoButton) {
+        pageInfoButton.title = "Información: " + (INFORMACION_PAGINAS[nombre]?.titulo || "esta página");
+        pageInfoButton.setAttribute("aria-label", pageInfoButton.title);
+      }
 
       const pageName =
         POWERBI.paginas[nombre];
@@ -2983,6 +3690,7 @@ prevision:"56a3511d0127d015c46e",
           event.key === "Escape"
         ) {
 
+          cerrarInfo();
           cerrarMenuMobile();
 
         }
