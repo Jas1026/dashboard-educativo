@@ -2464,7 +2464,7 @@
             <span class="menu-content">
 
               <span class="menu-name">
-                Admitidos
+                Admisión
               </span>
 
               <span class="menu-description">
@@ -2485,6 +2485,12 @@
             <div class="submenu-inner">
               <a
                 href="#"
+                onclick="cargarPagina('admitidos', this); return false;"
+              >
+                Plazas disponibles
+              </a>
+              <a
+                href="#"
                 onclick="cargarPagina('inscritos', this); return false;"
               >
                 Inscritos
@@ -2492,16 +2498,16 @@
 
               <a
                 href="#"
-                onclick="cargarPagina('admitidos', this); return false;"
+                onclick="cargarPagina('inscritosB3', this); return false;"
               >
-                Admitidos
+                Inscritos B3
               </a>
 
               <a
                 href="#"
                 onclick="cargarPagina('admitidosi', this); return false;"
               >
-                Admitidos vs inscritos
+                Plazas disponibles vs inscritos
               </a>
 
 
@@ -2559,7 +2565,13 @@
                 Especialidades 2026
               </a>
 
-
+              <a
+                href="#"
+                onclick="cargarPagina('especialidadesh', this); return false;"
+              >
+                Especialidades historicas
+                
+              </a>
             </div>
 
           </div>
@@ -3308,6 +3320,10 @@
           "d706c44907297aaea480",
 
 
+       especialidadesh:
+          "71f219ea87b316530ca8",
+
+
         /* JUBILACIÓN */
 
         jubilacion:
@@ -3324,6 +3340,11 @@
 
         inscritos:
           "6ca8e5f15aa373b482ad",
+
+        
+        inscritosB3:
+          "9a36cb61797d021a3507",
+
 
         admitidosi:
           "984a307696c75dd6c992",
